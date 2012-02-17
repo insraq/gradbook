@@ -52,7 +52,7 @@ class User extends CI_Controller {
 				$user->password = sha1($this->input->post('password'));
 				$user->email = $this->input->post('email');
 				$user->college = $this->input->post('college');
-				$user->verified = $this->input->post('verifed');
+				$user->validate = 0;
 				$id =  R::store($user);
 				// Send Email
 				$this->_send_validation_email($id);
@@ -61,6 +61,38 @@ class User extends CI_Controller {
 				$this->load->view('user/success');
 				$this->load->view('footer');
 			}
+		}
+	}
+
+	public function activate($id, $code)
+	{
+		$v = R::findOne('validation', 'user_id = ?', array($id));
+		if (isset($v->id))
+		{
+			if ($v->code == $code)
+			{
+				// Model
+				R::trash($v);
+				$user = R::load('user', $v->user_id);
+				$user->validate = 1;
+				R::store($user);
+				// View
+				$this->load->view('header', array('title' => '验证成功'));
+				$this->load->view('user/validate_success');
+				$this->load->view('footer');
+			}
+			else
+			{
+				$this->load->view('header', array('title' => '验证失败'));
+				$this->load->view('message', array('type' => 'alert-error', 'message' => '验证信息已经失效。'));
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header', array('title' => '验证错误'));
+			$this->load->view('message', array('type' => 'alert-error', 'message' => '验证信息不存在。'));
+			$this->load->view('footer');
 		}
 	}
 
