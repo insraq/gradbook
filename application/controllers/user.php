@@ -6,7 +6,7 @@ class User extends CI_Controller {
 	{
 		$this->load->helper('form');
 
-		$this->load->view('header');
+		$this->load->view('header', array('title' => '创建用户'));
 		$this->load->view('user/create');
 		$this->load->view('footer');
 	}
@@ -34,9 +34,28 @@ class User extends CI_Controller {
 		}
 		else
 		{
-			$this->load->view('header');
-			$this->load->view('user/success');
-			$this->load->view('footer');
+			$exist = R::findOne('user', 'student_id = ?', array('08' . $this->input->post('user')));
+			if (isset($exist->id))
+			{
+				$this->load->view('header', array('title' => '用户已存在'));
+				$this->load->view('user/exist');
+				$this->load->view('footer');
+			}
+			else
+			{
+				// Model
+				$user = R::dispense('user');
+				$user->student_id = '08' . $this->input->post('user');
+				$user->password = sha1($this->input->post('password'));
+				$user->email = $this->input->post('email');
+				$user->college = $this->input->post('college');
+				$user->verified = $this->input->post('verifed');
+				$id =  R::store($user);
+				// View
+				$this->load->view('header');
+				$this->load->view('user/success');
+				$this->load->view('footer');
+			}
 		}
 	}
 }

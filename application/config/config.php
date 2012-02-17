@@ -360,3 +360,12 @@ $config['proxy_ips'] = '';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
+
+
+// Autoloader Function @hacked by insraq
+
+function __autoload($class) {
+	if (file_exists(APPPATH.'models/'.strtolower($class).EXT)) {  
+		include_once(APPPATH.'models/'.strtolower($class).EXT);  
+	}
+}  
