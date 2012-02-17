@@ -1,0 +1,10 @@
+h1, h2, h3, h4, h5, h6, legend {
+	font-family: "微软雅黑", "Microsoft Yahei";
+	font-weight: normal;
+	margin: 0 0 10px 0;
+}
+
+.logo {
+	text-align: center;
+	margin: 20px 0;
+}
