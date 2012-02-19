@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Tool extends CI_Controller {
 
 	public function resize($size)
 	{
@@ -14,8 +14,8 @@ class Home extends CI_Controller {
 				$config['source_image'] = './upload/' . $u->photo;
 				$config['new_image'] = './upload/thumb_' . $u->photo;
 				$config['maintain_ratio'] = TRUE;
-				$config['width'] = 220;
-				$config['height'] = 220;
+				$config['width'] = $size;
+				$config['height'] = $size;
 				$this->load->library('image_lib', $config);
 				$this->image_lib->resize();
 			}
