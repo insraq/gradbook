@@ -24,7 +24,7 @@ class Home extends CI_Controller {
 		$this->load->helper('astro');
 		$users = R::find('profile', "`{$item}` = ?", array(urldecode($value)));
 		$this->load->view('header');
-		$this->load->view('home/home', array(
+		$this->load->view('home/filter', array(
 			'users' => $users,
 			'profile' => R::findOne('profile', 'user_id = ?', array($user->id)),
 			'gender' => array('M' => '男', 'F' => '女')
