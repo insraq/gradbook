@@ -189,7 +189,7 @@
 			<label class="control-label" for="photo">照片</label>
 			<div class="controls">
 				<input class="input-file" name="photo" type="file">
-				<p class="help-block">请把照片剪裁成正方形，保证边长至少600px。推荐使用 <a href="<?php echo site_url('user/xiuxiu'); ?>" target="_blank" class="btn">美图秀秀</a> 剪裁。如果不想更新，可以留空。</p>
+				<p class="help-block">照片将会印在毕业纪念册上，请把照片剪裁成正方形，保证边长至少1000px。推荐使用 <a href="<?php echo site_url('user/xiuxiu'); ?>" target="_blank" class="btn">美图秀秀</a> 剪裁。如果不想更新，可以留空。</p>
 				<?php if (!empty($profile->photo)): ?>
 					<p><img src="<?php echo base_url('upload/thumb_' . $profile->photo); ?>" alt="" width="160", height="160" class="photo" /></p>
 				<?php endif; ?>
