@@ -318,17 +318,17 @@ class User extends CI_Controller {
 
 		$user = R::load('user', $id);
 
-		$this->email->from('no-reply@cuhk.me', '毕业纪念册');
+		$this->email->from('no-reply@cuhk.me', 'CUHK Graduate Book 2012');
 		$this->email->reply_to('sun@ruoyu.me', 'SUN Ruoyu');
 
 		$email = 's' . substr($user->student_id, 0, -1) . '@mailserv.cuhk.edu.hk';
 		$this->email->to($email);
 
-		$this->email->subject('请完成毕业纪念册的身份验证');
+		$this->email->subject('Please finish the validation of CUHK Graduate Book 2012');
 
 		$code = $this->_get_validation($user->id);
 		$url = site_url("user/activate/{$user->id}/{$code}");
-		$this->email->message('恭喜你，你的帐户已经建立，请点击下面的链接完成身份验证：' . $url);
+		$this->email->message('Congratulations, your account has been created, please click the following link to validate your account: ' . $url);
 
 		$this->email->send();
 	}
