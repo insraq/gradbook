@@ -3,6 +3,10 @@
 	<div class="bar" style="width: 30%;"></div>
 </div>
 
+<div class="alert">
+	请注意，此页面上的信息，一经填写，无法更改，请在提交前检查你输入的信息是否正确。
+</div>
+
 <?php echo validation_errors(); ?>
 <?php echo form_open('user/validate', array('class' => 'form-horizontal')); ?>
 	<fieldset>
