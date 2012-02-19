@@ -11,6 +11,7 @@ class Tool extends CI_Controller {
 		{
 			if (!empty($p->photo))
 			{
+				$config = array();
 				$config['image_library'] = 'gd2';
 				$config['source_image'] = './upload/' . $p->photo;
 				$config['new_image'] = './upload/thumb_' . $p->photo;
