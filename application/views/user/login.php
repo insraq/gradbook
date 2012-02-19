@@ -1,10 +1,5 @@
 <div class="row">
 
-	<p>创建用户一共需要三步，你现在在 <b>第一步：填写基本信息</b>。</p>
-	<div class="progress progress-success progress-striped">
-		<div class="bar" style="width: 30%;"></div>
-	</div>
-
 	<?php if (isset($warning)): ?>
 	<div class="alert alert-error">
 		<?php echo $warning; ?>
@@ -25,6 +20,14 @@
 				<label class="control-label" for="password">密码</label>
 				<div class="controls">
 					<input type="password" name="password" class="input-xlarge">
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<p>
+						还没注册？立即
+						<a href="<?php echo site_url('user/create'); ?>" class="btn">创建用户</a>
+					</p>
 				</div>
 			</div>
 		</fieldset>

@@ -2,7 +2,8 @@
 
 class Rb {
 
-	function __construct() {
+	function __construct()
+	{
 		// Include database configuration
 		include(APPPATH.'config/database.php');
 		// Get Redbean

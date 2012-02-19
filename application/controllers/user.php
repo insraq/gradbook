@@ -111,28 +111,92 @@ class User extends CI_Controller {
 
 	public function profile($id)
 	{
-		$user_id = $this->session->userdata('user_id');
-		$user = R::load('user', $id);
-		if ($user->id == $user_id)
+		$user = $this->login->require_login();
+		if ($user->id == $id)
 		{
 			$this->load->helper('form');
 			$this->load->view('header', array('title' => '完善个人资料'));
-			$this->load->view('user/profile', array(
+			$data = array(
 				'user' => $user, 
 				'province' => $this->_get_province(),
 				'faculty' => $this->_get_faculty(),
+				'relationship' => $this->_get_relationship(),
+				'aim' => $this->_get_aim(),
+				'faculty' => $this->_get_faculty(),
+				'department' => $this->_get_department(),
 				'ocamp_big' => $this->_get_ocamp_big(),
 				'ocamp_small' => $this->_get_ocamp_small()
-			));
+			);
+
+			$profile = R::findOne('profile', 'user_id = ?', array($user->id));
+			if (isset($profile->id))
+			{
+				$data['profile'] = $profile;
+			}
+			$this->load->view('user/profile', $data);
 			$this->load->view('footer');
 		}
 		else
 		{
-			$this->load->view('header', array('title' => '未登录'));
-			$this->load->view('message', array('type' => 'alert-error', 'message' => '尚未登陆。'));
+			$this->load->view('header', array('title' => '请不要试图编辑其他人的资料。'));
+			$this->load->view('message', array('type' => 'alert-error', 'message' => '请不要试图编辑其他人的资料，此次访问已经被记录在案。'));
 			$this->load->view('footer');
 		}
 
+	}
+
+	public function update_profile()
+	{
+		$user = $this->login->require_login();
+				
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_error_delimiters('<div class="alert alert-error">', '</div>');
+		$this->form_validation->set_message('required', '<b>%s</b> 是必填项。');
+		$this->form_validation->set_message('exact_length', '<b>%s</b> 必须是 <b>%s</b> 位数字。');
+		$this->form_validation->set_message('integer', '<b>%s</b> 必须是数字。');
+
+		$this->form_validation->set_rules('mobile', '香港手机', 'required|exact_length[8]|ingeter');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->helper('form');
+			$this->load->view('header', array('title' => '完善个人资料'));
+			$data = array(
+				'user' => $user, 
+				'province' => $this->_get_province(),
+				'faculty' => $this->_get_faculty(),
+				'relationship' => $this->_get_relationship(),
+				'aim' => $this->_get_aim(),
+				'faculty' => $this->_get_faculty(),
+				'department' => $this->_get_department(),
+				'ocamp_big' => $this->_get_ocamp_big(),
+				'ocamp_small' => $this->_get_ocamp_small()
+			);
+
+			$profile = R::findOne('profile', 'user_id = ?', array($user->id));
+			if (isset($profile->id))
+			{
+				$data['profile'] = $profile;
+			}
+			$this->load->view('user/profile', $data);
+			$this->load->view('footer');
+		}
+		else
+		{
+			$profile = R::findOne('profile', 'user_id = ?', array($user->id));
+			if (isset($profile->id))
+			{
+				$profile->import($this->input->post(), 'nickname, gender, year, month, day, province, faculty, department, relationship, ocamp_big, ocamp_small, mobile, qq, msn, aim, moment, comment1, comment2');
+			}
+			else
+			{
+				$profile = R::dispense('profile');
+				$profile->import($this->input->post(), 'nickname, gender, year, month, day, province, faculty, department, relationship, ocamp_big, ocamp_small, mobile, qq, msn, aim, moment, comment1, comment2');
+				$profile->user = $user;
+			}
+			R::store($profile);
+		}
 	}
 
 	public function login()
@@ -140,7 +204,7 @@ class User extends CI_Controller {
 		$user_id = $this->session->userdata('user_id');
 		if ($user_id)
 		{
-			redirect('user/profile/' . $user->id);
+			redirect('user/profile/' . $user_id);
 		}
 		else
 		{
@@ -151,6 +215,12 @@ class User extends CI_Controller {
 			$this->load->view('footer');
 		}
 
+	}
+	
+	public function logout()
+	{
+		$this->session->unset_userdata('user_id');
+		redirect('user/login');
 	}
 
 	public function check()
@@ -319,10 +389,21 @@ class User extends CI_Controller {
 			'山字军',
 			'畅天涯',
 			'天龙殿',
-			'辞源堂'
+			'辞源堂',
+			'其他'
 		);
 	}
 	
+	private function _get_aim()
+	{
+		return array('留港工作', '出国工作', '内地工作', '香港读书', '出国读书', '内地读书', '其他');
+	}
+
+	private function _get_relationship()
+	{
+		return array('单身', '恋爱中', '说不准', '不想说');
+	}
+
 	private function _get_ocamp_small()
 	{
 		return array(
@@ -360,7 +441,9 @@ class User extends CI_Controller {
 			'辞海',
 			'新华',
 			'牛津',
-			'朗文'
+			'朗文',
+
+			'其他'
 		);
 	}
 }
