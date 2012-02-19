@@ -26,6 +26,7 @@ class Tool extends CI_Controller {
 		}
 
 		$this->load->view('header');
+		$this->image_lib->display_errors('<p>', '</p>');
 		$this->load->view('message', array('message' => $message . '更改大小成功。'));
 		$this->load->view('footer');
 	}
