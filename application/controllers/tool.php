@@ -4,7 +4,7 @@ class Tool extends CI_Controller {
 
 	public function resize($size)
 	{
-		$users = R::find('user');
+		$users = R::find('profile');
 
 		foreach ($users as $u)
 		{
