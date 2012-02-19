@@ -5,7 +5,7 @@
 		<div href="#" class="thumbnail">
 			<img src="<?php echo empty($u->photo) ? base_url('asset/img/avatar.png') : base_url('upload/thumb_' . $u->photo); ?>" alt="$u->user->name" />
 			<div class="caption">
-				<h3><?php echo $u->user->name; ?> (<?php echo $u->nickname; ?>)</h3>
+				<h3><?php echo $u->user->name; ?> <?php echo $u->nickname ? "({$u->nickname})" : ''; ?></h3>
 				<p>
 					<span class="bubble"><?php echo $u->faculty; ?></span>
 				</p>
