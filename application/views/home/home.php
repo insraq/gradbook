@@ -8,6 +8,8 @@
 				<h3><?php echo $u->user->name; ?> (<?php echo $u->nickname; ?>)</h3>
 				<p>
 					<span class="bubble"><?php echo $u->faculty; ?></span>
+				</p>
+				<p>
 					<span class="bubble"><?php echo $u->department; ?></span>
 				</p>
 				<p>

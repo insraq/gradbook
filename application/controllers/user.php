@@ -185,7 +185,7 @@ class User extends CI_Controller {
 				$profile->import($this->input->post(), 'nickname, gender, year, month, day, province, faculty, department, relationship, ocamp_big, ocamp_small, mobile, qq, msn, aim, moment, comment1, comment2');
 				$profile->user = $user;
 			}
-			
+
 			R::store($profile);
 
 			if (!empty($_FILES['photo']['name']))
@@ -205,8 +205,8 @@ class User extends CI_Controller {
 						$config['source_image'] = $target;
 						$config['new_image'] = './upload/thumb_' . $filename;
 						$config['maintain_ratio'] = TRUE;
-						$config['width'] = 160;
-						$config['height'] = 160;
+						$config['width'] = 220;
+						$config['height'] = 220;
 						$this->load->library('image_lib', $config);
 						$this->image_lib->resize();
 
