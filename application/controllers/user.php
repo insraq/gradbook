@@ -185,6 +185,8 @@ class User extends CI_Controller {
 				$profile->import($this->input->post(), 'nickname, gender, year, month, day, province, faculty, department, relationship, ocamp_big, ocamp_small, mobile, qq, msn, aim, moment, comment1, comment2');
 				$profile->user = $user;
 			}
+			
+			R::store($profile);
 
 			if (!empty($_FILES['photo']['name']))
 			{
