@@ -29,5 +29,10 @@ h1, h2, h3, h4, h5, h6, legend {
 }
 
 .bubble-love {
-	background: #FFC5DE;
+	background: #FF93C2;
+	color: white;
 }
+
+.bubble-love:hover {
+	background: #FF7AB4;
+};
