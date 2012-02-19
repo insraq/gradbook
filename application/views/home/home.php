@@ -30,7 +30,7 @@
 				</p>
 				<p>
 					<span class="bubble"><?php $astro = get_astro($u->month, $u->day); echo $astro['name']; ?><?php echo $gender[$u->gender]; ?></span>
-					<span class="bubble"><?php echo $u->relationship == '恋爱中' ? '<i class="icon-heart"></i>' : ''; ?> <?php echo $u->relationship; ?></span>
+					<span class="bubble <?php echo $u->relationship == '恋爱中' ? 'bubble-love' : ''; ?>"><?php echo $u->relationship == '恋爱中' ? '<i class="icon-heart"></i>' : ''; ?> <?php echo $u->relationship; ?></span>
 					<span class="bubble"><?php echo $u->aim; ?></span>
 				</p>
 			</div>
