@@ -7,7 +7,14 @@ class Home extends CI_Controller {
 		$user = $this->session->userdata('user_id');
 		if ($user)
 		{
-			redirect('user/profile/' . $user);
+			$this->load->helper('astro');
+			$users = R::find('profile');
+			$this->load->view('header');
+			$this->load->view('home/home', array(
+				'users' => $users,
+				'gender' => array('M' => '男', 'F' => '女')
+			));
+			$this->load->view('footer');
 		}
 		else
 		{

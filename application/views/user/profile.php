@@ -10,7 +10,7 @@
 	</div>
 	
 	<?php echo validation_errors(); ?>
-	<?php echo form_open('user/update_profile', array('class' => 'form-horizontal')); ?>
+	<?php echo form_open_multipart('user/update_profile', array('class' => 'form-horizontal')); ?>
 		<fieldset>
 			<legend>基本信息</legend>
 			<div class="control-group">
@@ -184,6 +184,16 @@
 					<input type="text" name="comment1" value="<?php echo isset($profile) ? $profile->comment1 : ''; ?>" class="input-xlarge">？
 					<input type="text" name="comment2" value="<?php echo isset($profile) ? $profile->comment2 : ''; ?>" class="input-xlarge">！
 					<p class="help-block">毕业了，你有什么话要跟中大说？请按照第一句是问号，第二句是感叹号的格式。比如：「高帅富？屌丝！」「今天考Midterm？哥还没复习！」</p>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="photo">照片</label>
+				<div class="controls">
+					<input class="input-file" name="photo" type="file">
+					<p class="help-block">请把照片剪裁成正方形，保证边长至少600px。推荐使用 <a href="<?php echo site_url('user/xiuxiu'); ?>" target="_blank" class="btn">美图秀秀</a> 剪裁。如果不想更新，可以留空。</p>
+					<?php if (!empty($profile->photo)): ?>
+						<p><img src="<?php echo base_url('upload/thumb_' . $profile->photo); ?>" alt="" width="160", height="160" class="photo" /></p>
+					<?php endif; ?>
 				</div>
 			</div>
 		</fieldset>

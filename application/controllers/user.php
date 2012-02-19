@@ -195,7 +195,47 @@ class User extends CI_Controller {
 				$profile->import($this->input->post(), 'nickname, gender, year, month, day, province, faculty, department, relationship, ocamp_big, ocamp_small, mobile, qq, msn, aim, moment, comment1, comment2');
 				$profile->user = $user;
 			}
-			R::store($profile);
+
+			if (!empty($_FILES['photo']['name']))
+			{
+				$fileinfo = pathinfo($_FILES['photo']['name']);
+				$filename = strtolower($user->id . '.' . $fileinfo['extension']);
+				$target = './upload/' . $filename;
+				if (move_uploaded_file($_FILES['photo']['tmp_name'], $target))
+				{
+					$size = getimagesize($target);
+					if ($size[0] == $size[1] AND $size[0] >= 600 AND $size[1] >= 600)
+					{
+						$profile->photo = $filename;
+						R::store($profile);
+
+						$config['image_library'] = 'gd2';
+						$config['source_image'] = $target;
+						$config['new_image'] = './upload/thumb_' . $filename;
+						$config['maintain_ratio'] = TRUE;
+						$config['width'] = 160;
+						$config['height'] = 160;
+						$this->load->library('image_lib', $config);
+						$this->image_lib->resize();
+
+						$this->load->view('header');
+						$this->load->view('message', array('title' => '资料成功更新', 'type' => 'alert-success', 'message' => '资料成功更新，照片成功上传。'));
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->load->view('header');
+						$this->load->view('message', array('title' => '照片大小不符合要求', 'type' => 'alert-error', 'message' => '照片大小不符合要求，请返回重新上传。'));
+						$this->load->view('footer');
+					}
+				}
+			}
+			else
+			{
+				$this->load->view('header');
+				$this->load->view('message', array('title' => '资料成功更新', 'type' => 'alert-success', 'message' => '资料成功更新。'));
+				$this->load->view('footer');
+			}
 		}
 	}
 
@@ -251,6 +291,13 @@ class User extends CI_Controller {
 			}
 		}
 
+	}
+
+	public function xiuxiu()
+	{
+		$this->load->view('header', array('title' => '美图秀秀'));
+		$this->load->view('user/xiuxiu');
+		$this->load->view('footer');
 	}
 
 	private function _get_validation($id)
