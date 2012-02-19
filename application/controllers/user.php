@@ -196,7 +196,7 @@ class User extends CI_Controller {
 				if (move_uploaded_file($_FILES['photo']['tmp_name'], $target))
 				{
 					$size = getimagesize($target);
-					if ($size[0] == $size[1] AND $size[0] >= 600 AND $size[1] >= 600)
+					if ($size[0] == $size[1] AND $size[0] >= 1000 AND $size[1] >= 1000)
 					{
 						$profile->photo = $filename;
 						R::store($profile);
