@@ -6,6 +6,8 @@
 </div>
 <?php endif; ?>
 
+<h3>筛选条件：<?php echo $title; ?></h3>
+
 <ul class="thumbnails">
 	<?php foreach ($users as $u): ?>
 	<li class="span3">

@@ -27,7 +27,8 @@ class Home extends CI_Controller {
 		$this->load->view('home/filter', array(
 			'users' => $users,
 			'profile' => R::findOne('profile', 'user_id = ?', array($user->id)),
-			'gender' => array('M' => '男', 'F' => '女')
+			'gender' => array('M' => '男', 'F' => '女'),
+			'title' => urldecode($value)
 		));
 		$this->load->view('footer');
 	}
