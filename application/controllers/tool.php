@@ -21,7 +21,7 @@ class Tool extends CI_Controller {
 
 
 		$this->load->view('header');
-		$this->load->view('message', array('message' => $profile->photo . '更改大小成功。'));
+		$this->load->view('message', array('message' => $profile->photo . ' 更改大小成功。'));
 		$this->load->view('footer');
 	}
 }
