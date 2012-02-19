@@ -7,7 +7,7 @@ class User extends CI_Controller {
 		$user_id = $this->session->userdata('user_id');
 		if (!empty($user_id))
 		{
-			redirect('user/profile/' . $this->session->userdata('user_id'));
+			redirect();
 		}
 
 		$this->load->helper('form');
@@ -22,7 +22,7 @@ class User extends CI_Controller {
 		$user_id = $this->session->userdata('user_id');
 		if (!empty($user_id))
 		{
-			redirect('user/profile/' . $this->session->userdata('user_id'));
+			redirect();
 		}
 		
 		$this->load->library('form_validation');
@@ -92,7 +92,7 @@ class User extends CI_Controller {
 				// Session
 				$this->session->set_userdata(array('user_id' => $user->id));
 				// View
-				redirect('user/profile/' . $user->id);
+				redirect('user/profile');
 			}
 			else
 			{
@@ -109,40 +109,30 @@ class User extends CI_Controller {
 		}
 	}
 
-	public function profile($id)
+	public function profile()
 	{
 		$user = $this->login->require_login();
-		if ($user->id == $id)
-		{
-			$this->load->helper('form');
-			$this->load->view('header', array('title' => '完善个人资料'));
-			$data = array(
-				'user' => $user, 
-				'province' => $this->_get_province(),
-				'faculty' => $this->_get_faculty(),
-				'relationship' => $this->_get_relationship(),
-				'aim' => $this->_get_aim(),
-				'faculty' => $this->_get_faculty(),
-				'department' => $this->_get_department(),
-				'ocamp_big' => $this->_get_ocamp_big(),
-				'ocamp_small' => $this->_get_ocamp_small()
-			);
+		$this->load->helper('form');
+		$this->load->view('header', array('title' => '完善个人资料'));
+		$data = array(
+			'user' => $user, 
+			'province' => $this->_get_province(),
+			'faculty' => $this->_get_faculty(),
+			'relationship' => $this->_get_relationship(),
+			'aim' => $this->_get_aim(),
+			'faculty' => $this->_get_faculty(),
+			'department' => $this->_get_department(),
+			'ocamp_big' => $this->_get_ocamp_big(),
+			'ocamp_small' => $this->_get_ocamp_small()
+		);
 
-			$profile = R::findOne('profile', 'user_id = ?', array($user->id));
-			if (isset($profile->id))
-			{
-				$data['profile'] = $profile;
-			}
-			$this->load->view('user/profile', $data);
-			$this->load->view('footer');
-		}
-		else
+		$profile = R::findOne('profile', 'user_id = ?', array($user->id));
+		if (isset($profile->id))
 		{
-			$this->load->view('header', array('title' => '请不要试图编辑其他人的资料。'));
-			$this->load->view('message', array('type' => 'alert-error', 'message' => '请不要试图编辑其他人的资料，此次访问已经被记录在案。'));
-			$this->load->view('footer');
+			$data['profile'] = $profile;
 		}
-
+		$this->load->view('user/profile', $data);
+		$this->load->view('footer');
 	}
 
 	public function update_profile()
@@ -244,7 +234,7 @@ class User extends CI_Controller {
 		$user_id = $this->session->userdata('user_id');
 		if ($user_id)
 		{
-			redirect('user/profile/' . $user_id);
+			redirect();
 		}
 		else
 		{
@@ -268,7 +258,7 @@ class User extends CI_Controller {
 		$user_id = $this->session->userdata('user_id');
 		if ($user_id)
 		{
-			redirect('user/profile/' . $user->id);
+			redirect();
 		}
 		else
 		{
@@ -280,7 +270,7 @@ class User extends CI_Controller {
 			{
 				// Session
 				$this->session->set_userdata(array('user_id' => $user->id));
-				redirect('user/profile/' . $user->id);
+				redirect();
 			}
 			else
 			{
