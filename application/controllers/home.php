@@ -12,6 +12,7 @@ class Home extends CI_Controller {
 			$this->load->view('header');
 			$this->load->view('home/home', array(
 				'users' => $users,
+				'user' => $user,
 				'gender' => array('M' => '男', 'F' => '女')
 			));
 			$this->load->view('footer');
