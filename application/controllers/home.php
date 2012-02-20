@@ -67,7 +67,7 @@ class Home extends CI_Controller {
 			'profile' => $profile,
 			'gender' => array('M' => '男', 'F' => '女'),
 			'user' => $user,
-			'comment' => $comment
+			// 'comment' => $comment
 		));
 		$this->load->view('footer');
 	}
