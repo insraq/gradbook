@@ -1,6 +1,6 @@
 <?php echo nav(0);?>
 
-<p>现在一共有 <b><?php echo count($users); ?></b> 位老鬼登记了，大家快点告诉还没登记的朋友吧！</p>
+<p>现在一共有 <b><?php echo count($users); ?></b> 位老鬼登记了，完成了 <b><?php echo round(100 * count($users) / 256); ?>%</b>，大家快点告诉还没登记的朋友吧！</p>
 <div class="progress progress-success progress-striped">
 	<div class="bar" style="width: <?php echo round(100 * count($users) / 256); ?>%;"></div>
 </div>
