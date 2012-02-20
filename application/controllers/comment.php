@@ -18,6 +18,7 @@ class Comment extends CI_Controller {
 				$comment = $exist;
 				$comment->import($this->input->post(), 'word, private, public');
 				$comment->accept = $this->input->post('accept') ? 1 : 0;
+				$comment->last_update = time();
 			}
 			else
 			{
@@ -26,6 +27,7 @@ class Comment extends CI_Controller {
 				$comment->accept = $this->input->post('accept') ? 1 : 0;
 				$comment->from_user = $user->id;
 				$comment->to_user = $id;
+				$comment->last_update = time();
 			}
 			// Check max no of private
 			if ($this->input->post('love') == 'private')
