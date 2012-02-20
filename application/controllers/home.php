@@ -66,7 +66,7 @@ class Home extends CI_Controller {
 			'profile' => $profile,
 			'gender' => array('M' => '男', 'F' => '女'),
 			'user' => $user,
-			'my' => R::findOne('comment', 'from_user = ? AND to_user = ?', array((int) $user->id, (int) $id));
+			'my' => R::findOne('comment', 'from_user = ? AND to_user = ?', array((int) $user->id, (int) $id)),
 			// 'comment' => $comment
 		);
 		$this->load->view('header');
