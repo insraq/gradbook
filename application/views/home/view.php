@@ -2,7 +2,7 @@
 
 <div class="row">
 	<div class="span3 sidebar">
-		<h2><?php echo $profile->user->name; ?> <?php echo $u->nickname ? '(' . htmlspecialchars($u->nickname) . ')' : ''; ?></h2>
+		<h2><?php echo $profile->user->name; ?> <?php echo $profile->nickname ? '(' . htmlspecialchars($profile->nickname) . ')' : ''; ?></h2>
 		<img src="<?php echo empty($profile->photo) ? base_url('asset/img/avatar.png') : base_url('upload/thumb_' . $profile->photo); ?>" alt="$profile->user->name" class="photo" />
 		<p>
 			<b>书院:</b>
