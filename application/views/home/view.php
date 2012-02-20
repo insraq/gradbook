@@ -128,7 +128,7 @@
 				</p>
 				<?php if ($user->id == $c->from_user OR $user->id == $c->to_user): ?>
 				<p class="private">
-					<i class="icon-lock"></i> (私密)
+					<i class="icon-lock"></i>
 					<?php echo htmlspecialchars($c->private); ?>
 				</p>
 				<?php endif; ?>
