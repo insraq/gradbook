@@ -123,6 +123,9 @@
 				<div class="meta">
 					<a href="<?php echo site_url('home/view/' . $c->from_user); ?>" class="bubble">来自：<?php echo R::load('user', $c->from_user)->name; ?></a>
 					<span class="bubble">一个词形容<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>：<?php echo $c->word; ?></span>
+					<?php if ($c->love == 'public'): ?>
+						<span class="bubble"><i class="icon-volume-up"></i> 表白</span></span>
+					<?php endif; ?>
 				</div>
 				<p class="public">
 					<?php echo htmlspecialchars($c->public); ?>
