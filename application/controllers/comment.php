@@ -12,7 +12,7 @@ class Comment extends CI_Controller {
 		}
 		elseif ($this->input->post('word') AND $this->input->post('public'))
 		{
-			$exist = R::findOne('comment', 'from_user = ? AND from_user = ?', array($user->id, $id));
+			$exist = R::findOne('comment', 'from_user = ? AND to_user = ?', array($user->id, $id));
 			if (isset($exist->id))
 			{
 				$comment = $exist;
