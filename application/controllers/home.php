@@ -69,7 +69,7 @@ class Home extends CI_Controller {
 			// 'comment' => $comment
 		);
 		// Get my comment
-		$my = R::findOne('comment', 'from = ? AND to = ?', array($user->id, $id));
+		$my = R::findOne('comment', 'from_user = ? AND to_user = ?', array((int) $user->id, (int) $id));
 		if (isset($my->id))
 		{
 			$data['my_comment'] = $my;
