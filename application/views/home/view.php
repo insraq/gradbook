@@ -69,6 +69,9 @@
 		<h2>涂鸦墙</h2>
 		<?php if ($user->id != $profile->user->id): ?>
 		<?php echo form_open('comment/update/' . $profile->user->id); ?>
+			<div class="alert">
+				你只能填写一次留言，但是你可以随时更改你的留言。
+			</div>
 			<p>
 				<label>用一个词形容<?php echo ($profile->gender == 'M') ? '他' : '她'; ?></label>
 				<input type="text" name="word" class="span9" <?php echo empty($my) ? 'placeholder="正太？萝莉？御姐？怪蜀黍？闷骚？"' : 'value="' . htmlspecialchars($my->word) . '"'; ?> />
