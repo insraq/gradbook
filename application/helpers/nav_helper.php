@@ -5,6 +5,7 @@
         $item = array(
             '首页' => '',
             '修改资料' => 'user/profile',
+            'OCamp' => 'home/ocamp',
             '登出' => 'user/logout'
         );
 

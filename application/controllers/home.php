@@ -32,4 +32,26 @@ class Home extends CI_Controller {
 		));
 		$this->load->view('footer');
 	}
+
+	public function ocamp()
+	{
+		$user = $this->login->require_login();
+		
+		$group = array(
+			'八达通' => array('东涌', '西贡', '南昌', '北角', '中环'),
+			'天一阁' => array('翊海', '凌渊', '逐浪', '浣泉', '云川'),
+			'山字军' => array('断背', '八宝', '人猿泰', '花果', '一桶姜'),
+			'畅天涯' => array('东旭', '西疆', '南海', '北雪', '中山'),
+			'天龙殿' => array('一阳', '无双', '北冥', '独尊', '六脉'),
+			'辞源堂' => array('辞源', '辞海', '新华', '牛津', '朗文')
+		);
+
+		$this->load->view('header');
+		$this->load->view('home/ocamp', array(
+			'profile' => R::findOne('profile', 'user_id = ?', array($user->id)),
+			'group' => $group
+		));
+
+		$this->load->view('footer');
+	}
 }
