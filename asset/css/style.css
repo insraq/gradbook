@@ -38,4 +38,17 @@ h1, h2, h3, h4, h5, h6, legend {
 .bubble-love:hover {
 	background: #FF7AB4;
 	color: white;
-};
+}
+
+.clear {
+	clear: both;	
+}
+
+.ocamp {
+	display: block;
+	text-align: center;
+	float: left;
+	margin: 1%;
+	width: 14%;
+	padding: 10px 0;
+}

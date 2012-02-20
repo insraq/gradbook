@@ -7,11 +7,9 @@
 <?php endif; ?>
 
 <?php foreach ($group as $k => $v): ?>
-	<p>
-		<a href="<?php echo site_url('home/filter/ocamp_big/' . urlencode($k)); ?>" class="btn btn-large btn-primary"><?php echo $k; ?></a>
-		<?php foreach ($v as $s): ?>
-			<a href="<?php echo site_url('home/filter/ocamp_small/' . urlencode($s)); ?>" class="btn btn-large"><?php echo $s; ?></a>
-		<?php endforeach; ?>
-	</p>
-
+	<a href="<?php echo site_url('home/filter/ocamp_big/' . urlencode($k)); ?>" class="btn btn-primary ocamp"><?php echo $k; ?></a>
+	<?php foreach ($v as $s): ?>
+		<a href="<?php echo site_url('home/filter/ocamp_small/' . urlencode($s)); ?>" class="btn ocamp"><?php echo $s; ?></a>
+	<?php endforeach; ?>
+	<div class="clear"></div>
 <?php endforeach; ?>
