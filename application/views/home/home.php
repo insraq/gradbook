@@ -12,7 +12,7 @@
 <?php endif; ?>
 
 <div class="alert alert-info">
-	你现在有 <b><?php echo count($count); ?></b> 条留言，快去 <a href="<?php echo site_url('home/me'); ?>">涂鸦墙</a> 看看吧。
+	你现在有 <b><?php echo count($comment); ?></b> 条留言，快去 <a href="<?php echo site_url('home/me'); ?>">涂鸦墙</a> 看看吧。
 </div>
 
 <ul class="thumbnails">
