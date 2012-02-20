@@ -16,20 +16,39 @@ class Comment extends CI_Controller {
 			if (isset($exist->id))
 			{
 				$comment = $exist;
-				$comment->import($this->input->post(), 'word, private, public, love');
+				$comment->import($this->input->post(), 'word, private, public');
 				$comment->accept = $this->input->post('accept') ? 1 : 0;
 			}
 			else
 			{
 				$comment = R::dispense('comment');
-				$comment->import($this->input->post(), 'word, private, public, love');
+				$comment->import($this->input->post(), 'word, private, public');
 				$comment->accept = $this->input->post('accept') ? 1 : 0;
 				$comment->from_user = $user->id;
 				$comment->to_user = $id;
 			}
+			// Check max no of private
+			if ($this->input->post('love') == 'private')
+			{
+				$number = count(R::find('comment', 'from_user = ? AND love = private', array($user->id)));
+				if ($number >= 5)
+				{
+					$message = '资料更新成功，但是你最多只能暗恋五个人，所以暗恋失败。';
+				}
+				else
+				{
+					$comment->love = $this->input->post('love');
+					$message = '资料更新成功。';
+				}
+			}
+			else
+			{
+				$comment->love = $this->input->post('love');
+				$message = '资料更新成功。';
+			}
 			R::store($comment);
 			$this->load->view('header');
-			$this->load->view('message', array('message' => '成功更新资料。', 'type' => 'alert-success'));
+			$this->load->view('message', array('message' => $message, 'type' => 'alert-success'));
 			$this->load->view('footer');
 		}
 		else
