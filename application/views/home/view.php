@@ -71,25 +71,29 @@
 		<?php echo form_open('comment/update/' . $profile->user->id); ?>
 			<p>
 				<label>用一个词形容<?php echo ($profile->gender == 'M') ? '他' : '她'; ?></label>
-				<input type="text" name="word" class="span9" placeholder="正太？萝莉？御姐？怪蜀黍？闷骚？" />
+				<input type="text" name="word" class="span9" <?php echo empty($my) ? 'placeholder="正太？萝莉？御姐？怪蜀黍？闷骚？"' : 'value="' . htmlspecialchars($my->word) . '"'; ?> />
 			</p>
 			<p>
 				<label>对<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>说的话 <span class="bubble"><i class="icon-pencil"></i> 公开</span></label>
-				<textarea class="span9" rows="3" name="public"></textarea>
+				<textarea class="span9" rows="3" name="public">
+					<?php echo empty($my) ? '' : 'value="' . htmlspecialchars($my->public) . '"'; ?>
+				</textarea>
 			</p>
 			<p>
 				<label>对<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>说的话 <span class="bubble"><i class="icon-lock"></i> 私密</span></label>
-				<textarea class="span9" rows="3" name="private"></textarea>
+				<textarea class="span9" rows="3" name="private">
+					<?php echo empty($my) ? '' : 'value="' . htmlspecialchars($my->private) . '"'; ?>
+				</textarea>
 			</p>
 			<p>
-				<input type="radio" name="love" value="no" checked /> <i class="icon-user"></i> 同学
-				<input type="radio" name="love" value="already" /> <i class="icon-heart"></i> 情侣
-				<input type="radio" name="love" value="public" /> <i class="icon-volume-up"></i> 表白
-				<input type="radio" name="love" value="private" /> <i class="icon-random"></i> 暗恋
+				<input type="radio" name="love" value="no" <?php echo ($my->love == 'no' OR empty(no)) ? 'checked' : ''; ?> /> <i class="icon-user"></i> 同学
+				<input type="radio" name="love" value="already" <?php echo ($my->love == 'already') ? 'checked' : ''; ?> /> <i class="icon-heart"></i> 情侣
+				<input type="radio" name="love" value="public" <?php echo ($my->love == 'public') ? 'checked' : ''; ?> /> <i class="icon-volume-up"></i> 表白
+				<input type="radio" name="love" value="private" <?php echo ($my->love == 'private') ? 'checked' : ''; ?> /> <i class="icon-random"></i> 暗恋
 				<a href="#" class="bubble left20" id="status-help-button">这是神马？</a>
 			</p>
 			<p>
-				<input type="checkbox" name="accept" value="auto" /> 如果<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>对我表白或者暗恋我，自动接受。
+				<input type="checkbox" name="accept" value="auto"  <?php echo ($my->accept == 1) ? 'checked' : ''; ?>/> 如果<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>对我表白或者暗恋我，自动接受。
 			</p>
 			<div id="status-help" style="display:none;">
 				<p>
