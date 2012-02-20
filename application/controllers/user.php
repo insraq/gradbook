@@ -147,6 +147,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_message('integer', '<b>%s</b> 必须是数字。');
 
 		$this->form_validation->set_rules('mobile', '香港手机', 'required|exact_length[8]|ingeter');
+		$this->form_validation->set_rules('nickname', '昵称', 'max_length[8]');
 
 		if ($this->form_validation->run() == FALSE)
 		{
