@@ -61,13 +61,13 @@ class Home extends CI_Controller {
 		$this->load->helper('form');
 		$user = $this->login->require_login();
 		$profile = R::findOne('profile', 'user_id = ?', array($id));
-		// $comment = R::find('comment', 'to = ?', array((int) $id));
+		$comment = R::find('comment', 'to_user = ?', array($id));
 		$data = array(
 			'profile' => $profile,
 			'gender' => array('M' => '男', 'F' => '女'),
 			'user' => $user,
-			'my' => R::findOne('comment', 'from_user = ? AND to_user = ?', array((int) $user->id, (int) $id)),
-			// 'comment' => $comment
+			'my' => R::findOne('comment', 'from_user = ? AND to_user = ?', array($user->id, $id)),
+			'comment' => $comment
 		);
 		$this->load->view('header');
 		$this->load->view('home/view', $data);

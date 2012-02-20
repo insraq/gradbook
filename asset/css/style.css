@@ -21,8 +21,13 @@ a:hover {
 }
 
 .photo-small {
-	width: 130px;
-	height: 130px;
+	width: 80px;
+	height: 80px;
+}
+
+.photo-right {
+	float: right;
+	margin: 5px;
 }
 
 .bubble {
@@ -92,4 +97,27 @@ a:hover {
 	position:fixed; /* this is the magic */
 	bottom:10px; /* together with this to put the div at the bottom*/
 	right:10px;
+}
+
+ul.comment {
+	padding: 0;
+	margin: 0;
+}
+
+ul.comment li {
+	border: 1px solid #ddd;
+	list-style-type: none;
+}
+
+ul.comment li p {
+	margin: 0;
+	padding: 5px;
+}
+
+ul.comment li .meta {
+	margin: 10px 5px 5px;
+}
+
+ul.comment li .private {
+	background: #f4f4f4;
 }

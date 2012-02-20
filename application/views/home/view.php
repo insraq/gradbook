@@ -116,6 +116,26 @@
 			<button type="reset" class="btn">取消</button>
 		<?php echo form_close(); ?>
 		<?php endif; ?>
+		<ul class="comment">
+			<?php foreach ($comment as $c): ?>
+			<li>
+				<a href="#"><img src="<?php echo base_url('upload/thumb_' . (R::findOne('profile', 'user_id = ?', array($c->from_user))->photo)); ?>" alt="" class="photo-small photo-right" /></a>
+				<div class="meta">
+					<a href="#" class="bubble">来自：<?php echo R::load('user', $c->from_user)->name; ?></a>
+				</div>
+				<p class="public">
+					<?php echo htmlspecialchars($c->public); ?>
+				</p>
+				<?php if ($user->id == $c->from_user OR $user->id == $c->to_user): ?>
+				<p class="private">
+					<i class="icon-lock"></i> (私密)
+					<?php echo htmlspecialchars($c->private); ?>
+				</p>
+				<?php endif; ?>
+				<div class="clear"></div>
+			</li>
+			<?php endforeach; ?>
+		</ul>
 	</div>
 </div>
 <script type="text/javascript">
