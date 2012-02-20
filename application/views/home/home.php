@@ -15,7 +15,9 @@
 	<?php foreach ($users as $u): ?>
 	<li class="span3">
 		<div class="thumbnail">
-			<img src="<?php echo empty($u->photo) ? base_url('asset/img/avatar.png') : base_url('upload/thumb_' . $u->photo); ?>" alt="$u->user->name" />
+			<a href="<?php echo site_url('home/view/' . $u->user->id); ?>">
+				<img src="<?php echo empty($u->photo) ? base_url('asset/img/avatar.png') : base_url('upload/thumb_' . $u->photo); ?>" alt="$u->user->name" />
+			</a>
 			<div class="caption">
 				<h3><a href="<?php echo site_url('home/view/' . $u->user->id); ?>"><?php echo $u->user->name; ?> <?php echo $u->nickname ? "({$u->nickname})" : ''; ?></a></h3>
 				<p>
