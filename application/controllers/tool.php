@@ -24,4 +24,16 @@ class Tool extends CI_Controller {
 		$this->load->view('message', array('message' => $profile->photo . ' 更改大小成功。'));
 		$this->load->view('footer');
 	}
+
+	public function college() {
+		$profile = R::find('profile');
+		foreach ($profile as $p)
+		{
+			$p->college = $p->user->college;
+			R::store($p);
+		}
+		$this->load->view('header');
+		$this->load->view('message', array('message' => '数据库升级成功。'));
+		$this->load->view('footer');
+	}
 }

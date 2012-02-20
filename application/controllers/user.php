@@ -184,6 +184,7 @@ class User extends CI_Controller {
 				$profile = R::dispense('profile');
 				$profile->import($this->input->post(), 'nickname, gender, year, month, day, province, faculty, department, relationship, ocamp_big, ocamp_small, mobile, qq, msn, aim, moment, comment1, comment2');
 				$profile->user = $user;
+				$profile->college = $user->college;
 			}
 
 			R::store($profile);
