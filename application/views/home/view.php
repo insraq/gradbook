@@ -86,10 +86,10 @@
 				</textarea>
 			</p>
 			<p>
-				<input type="radio" name="love" value="no" <?php echo ($my->love == 'no' OR empty($my)) ? 'checked' : ''; ?> /> <i class="icon-user"></i> 同学
-				<input type="radio" name="love" value="already" <?php echo ($my->love == 'already') ? 'checked' : ''; ?> /> <i class="icon-heart"></i> 情侣
-				<input type="radio" name="love" value="public" <?php echo ($my->love == 'public') ? 'checked' : ''; ?> /> <i class="icon-volume-up"></i> 表白
-				<input type="radio" name="love" value="private" <?php echo ($my->love == 'private') ? 'checked' : ''; ?> /> <i class="icon-random"></i> 暗恋
+				<input type="radio" name="love" value="no" <?php echo (empty($my) OR $my->love == 'no' OR ) ? 'checked' : ''; ?> /> <i class="icon-user"></i> 同学
+				<input type="radio" name="love" value="already" <?php echo (!empty($my) AND $my->love == 'already') ? 'checked' : ''; ?> /> <i class="icon-heart"></i> 情侣
+				<input type="radio" name="love" value="public" <?php echo (!empty($my) AND $my->love == 'public') ? 'checked' : ''; ?> /> <i class="icon-volume-up"></i> 表白
+				<input type="radio" name="love" value="private" <?php echo (!empty($my) AND $my->love == 'private') ? 'checked' : ''; ?> /> <i class="icon-random"></i> 暗恋
 				<a href="#" class="bubble left20" id="status-help-button">这是神马？</a>
 			</p>
 			<p>
