@@ -1,4 +1,4 @@
-<?php echo nav(0);?>
+<?php echo nav();?>
 
 <?php if (empty($profile->photo)): ?>
 <div class="alert">

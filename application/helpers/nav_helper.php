@@ -1,6 +1,6 @@
 <?php
 
-    function nav($active = 0)
+    function nav($active = -1)
     {
         $item = array(
             '首页' => '',
