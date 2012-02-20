@@ -12,7 +12,8 @@ class Home extends CI_Controller {
 		$this->load->view('home/home', array(
 			'users' => $users,
 			'profile' => R::findOne('profile', 'user_id = ?', array($user->id)),
-			'gender' => array('M' => '男', 'F' => '女')
+			'gender' => array('M' => '男', 'F' => '女'),
+			'count' => R::find('comment', 'to_user = ?', array($user->id))
 		));
 		$this->load->view('footer');
 	}
@@ -73,5 +74,11 @@ class Home extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('home/view', $data);
 		$this->load->view('footer');
+	}
+
+	public function me()
+	{
+		$user = $this->login->require_login();
+		redirect('home/view/' . $user->id);
 	}
 }
