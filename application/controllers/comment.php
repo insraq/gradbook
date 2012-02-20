@@ -12,21 +12,21 @@ class Comment extends CI_Controller {
 		}
 		elseif ($this->input->post('word') AND $this->input->post('public'))
 		{
-			$exist = R::findOne('comment', 'from = ? AND to = ?', array($user->id, $id));
-			if (isset($exist->id))
-			{
-				$comment = $exist;
-				$comment->import($this->input->post(), 'word, private, public, love');
-				$comment->accept = $this->input->post('accept') ? 1 : 0;
-			}
-			else
-			{
+			// $exist = R::findOne('comment', 'from = ? AND to = ?', array($user->id, $id));
+			// if (isset($exist->id))
+			// {
+			// 	$comment = $exist;
+			// 	$comment->import($this->input->post(), 'word, private, public, love');
+			// 	$comment->accept = $this->input->post('accept') ? 1 : 0;
+			// }
+			// else
+			// {
 				$comment = R::dispense('comment');
 				$comment->import($this->input->post(), 'word, private, public, love');
 				$comment->accept = $this->input->post('accept') ? 1 : 0;
 				$comment->from = $user->id;
 				$comment->to = $id;
-			}
+			// }
 			R::store($comment);
 			$this->load->view('header');
 			$this->load->view('message', array('message' => '成功更新资料。', 'type' => 'alert-success'));
