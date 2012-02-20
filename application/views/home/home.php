@@ -20,6 +20,7 @@
 				<h3><?php echo $u->user->name; ?> <?php echo $u->nickname ? "({$u->nickname})" : ''; ?></h3>
 				<p>
 					<a href="<?php echo site_url('home/filter/faculty/' . urlencode($u->faculty)); ?>" class="bubble"><?php echo $u->faculty; ?></a>
+					<a href="<?php echo site_url('home/filter/college/' . urlencode($u->college)); ?>" class="bubble"><?php echo $u->college; ?></a>
 				</p>
 				<p>
 					<a href="<?php echo site_url('home/filter/department/' . urlencode($u->department)); ?>" class="bubble"><?php echo $u->department; ?></a>
