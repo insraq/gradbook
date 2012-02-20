@@ -2,7 +2,7 @@
 
 <div class="row">
 	<div class="span3 sidebar">
-		<h2><?php echo $profile->user->name; ?> <?php echo $profile->nickname ? "({$profile->nickname})" : ''; ?></h2>
+		<h2><?php echo $profile->user->name; ?> <?php echo $u->nickname ? '(' . htmlspecialchars($u->nickname) . ')' : ''; ?></h2>
 		<img src="<?php echo empty($profile->photo) ? base_url('asset/img/avatar.png') : base_url('upload/thumb_' . $profile->photo); ?>" alt="$profile->user->name" class="photo" />
 		<p>
 			<b>书院:</b>
@@ -38,30 +38,30 @@
 		</p>
 		<p>
 			<b>毕业去向:</b>
-			<?php echo $profile->aim; ?>
+			<?php echo htmlspecialchars($profile->aim); ?>
 		</p>
 		<p>
 			<b>最难忘时刻:</b>
-			<?php echo $profile->moment ?: '还没有写呢。'; ?>
+			<?php echo $profile->moment ? htmlspecialchars($profile->moment) : '还没有写呢。'; ?>
 		</p>
 		<p>
 			<b>对中大说的话:</b>
-			<?php echo $profile->comment1 ?: '神马'; ?>？<?php echo $profile->comment2 ?: '还木有写'; ?>！
+			<?php echo $profile->comment1 ? htmlspecialchars($profile->comment1) : '神马'; ?>？<?php $profile->comment2 ? htmlspecialchars($profile->comment2) : '还木有写'; ?>！
 		</p>
 		<p>
 			<b>香港手机:</b>
-			<?php echo $profile->mobile; ?>
+			<?php echo htmlspecialchars($profile->mobile); ?>
 		</p>
 		<p>
 			<b>电邮:</b>
-			<?php echo $profile->user->email; ?>
+			<?php echo htmlspecialchars($profile->user->email); ?>
 		</p>
 		<p>
 			<b>QQ:</b>
-			<?php echo $profile->qq; ?>
+			<?php echo htmlspecialchars($profile->qq); ?>
 		</p>		<p>
 			<b>MSN:</b>
-			<?php echo $profile->msn; ?>
+			<?php echo htmlspecialchars($profile->msn); ?>
 		</p>
 	</div>
 	<div class="span9">
