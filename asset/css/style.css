@@ -35,6 +35,14 @@ a:hover {
 	border-radius: 3px;
 }
 
+.left10 {
+	margin: 0 0 0 10px;
+}
+
+.left20 {
+	margin: 0 0 0 10px;
+}
+
 .bubble:hover {
 	background: #ddd;
 	color: #333;
@@ -77,4 +85,11 @@ a:hover {
 	background: #f4f4f4;
 	color: #333;
 	text-decoration: none;
+}
+
+#back-to-top {
+	display: none;
+	position:fixed; /* this is the magic */
+	bottom:10px; /* together with this to put the div at the bottom*/
+	right:10px;
 }

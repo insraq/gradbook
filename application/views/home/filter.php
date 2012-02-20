@@ -14,7 +14,7 @@
 		<div href="#" class="thumbnail">
 			<img src="<?php echo empty($u->photo) ? base_url('asset/img/avatar.png') : base_url('upload/thumb_' . $u->photo); ?>" alt="$u->user->name" />
 			<div class="caption">
-				<h3><?php echo $u->user->name; ?> <?php echo $u->nickname ? "({$u->nickname})" : ''; ?></h3>
+				<h3><a href="<?php echo site_url('home/view/' . $u->user->id); ?>"><?php echo $u->user->name; ?> <?php echo $u->nickname ? "({$u->nickname})" : ''; ?></a></h3>
 				<p>
 					<a href="<?php echo site_url('home/filter/faculty/' . urlencode($u->faculty)); ?>" class="bubble"><?php echo $u->faculty; ?></a>
 				</p>

@@ -58,13 +58,16 @@ class Home extends CI_Controller {
 	public function view($id)
 	{
 		$this->load->helper('astro');
+		$this->load->helper('form');
 		$user = $this->login->require_login();
-		$profile = R::findOne('profile', "user_id = ?", array($id));
-
+		$profile = R::findOne('profile', 'user_id = ?', array($id));
+		// $comment = R::find('comment', 'to = ?', array((int) $id));
 		$this->load->view('header');
 		$this->load->view('home/view', array(
 			'profile' => $profile,
 			'gender' => array('M' => '男', 'F' => '女'),
+			'user' => $user,
+			'comment' => $comment
 		));
 		$this->load->view('footer');
 	}

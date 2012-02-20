@@ -46,7 +46,7 @@
 		</p>
 		<p>
 			<b>对中大说的话:</b>
-			<?php echo $profile->comment1 ? htmlspecialchars($profile->comment1) : '神马'; ?>？<?php $profile->comment2 ? htmlspecialchars($profile->comment2) : '还木有写'; ?>！
+			<?php echo $profile->comment1 ? htmlspecialchars($profile->comment1) : '神马'; ?>？<?php echo $profile->comment2 ? htmlspecialchars($profile->comment2) : '还木有写'; ?>！
 		</p>
 		<p>
 			<b>香港手机:</b>
@@ -59,12 +59,65 @@
 		<p>
 			<b>QQ:</b>
 			<?php echo htmlspecialchars($profile->qq); ?>
-		</p>		<p>
+		</p>		
+		<p>
 			<b>MSN:</b>
 			<?php echo htmlspecialchars($profile->msn); ?>
 		</p>
 	</div>
 	<div class="span9">
 		<h2>涂鸦墙</h2>
+		<?php if ($user->id != $profile->user->id): ?>
+		<?php echo form_open('comment/update/' . $profile->user->id); ?>
+			<p>
+				<label>用一个词形容<?php echo ($profile->gender == 'M') ? '他' : '她'; ?></label>
+				<input type="text" name="word" class="span9" placeholder="正太？萝莉？御姐？怪蜀黍？闷骚？" />
+			</p>
+			<p>
+				<label>对<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>说的话 <span class="bubble"><i class="icon-pencil"></i> 公开</span></label>
+				<textarea class="span9" rows="3" name="public"></textarea>
+			</p>
+			<p>
+				<label>对<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>说的话 <span class="bubble"><i class="icon-lock"></i> 私密</span></label>
+				<textarea class="span9" rows="3" name="private"></textarea>
+			</p>
+			<p>
+				<input type="radio" name="love" value="no" checked /> <i class="icon-user"></i> 同学
+				<input type="radio" name="love" value="already" /> <i class="icon-heart"></i> 情侣
+				<input type="radio" name="love" value="public" /> <i class="icon-volume-up"></i> 表白
+				<input type="radio" name="love" value="private" /> <i class="icon-random"></i> 暗恋
+				<a href="#" class="bubble left20" id="status-help-button">这是神马？</a>
+			</p>
+			<p>
+				<input type="checkbox" name="accept" value="auto" /> 如果<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>对我表白或者暗恋我，自动接受。
+			</p>
+			<div id="status-help" style="display:none;">
+				<p>
+					<span class="bubble"><i class="icon-user"></i> 同学</span>
+					我和<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>是绝对最纯洁基友或闺蜜关系，绝对经得起时间考验。
+				</p>
+				<p>
+					<span class="bubble"><i class="icon-heart"></i> 情侣</span>
+					我和<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>是情侣，只有<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>也认为你是情侣，这条消息才会公开。
+				</p>
+				<p>
+					<span class="bubble"><i class="icon-volume-up"></i> 表白</span>
+					对<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>公开表白，这条消息将会公开。你无限次公开表白，性别不限。
+				</p>
+				<p>
+					<span class="bubble"><i class="icon-random"></i> 暗恋</span>
+					系统会将这条消息保密，如果<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>也暗恋你，系统将私下通知你们。你最多可以暗恋五个人，性别不限。
+				</p>
+			</div>
+			<button type="submit" class="btn btn-primary">提交</button>
+			<button type="reset" class="btn">取消</button>
+		<?php echo form_close(); ?>
+		<?php endif; ?>
 	</div>
 </div>
+<script type="text/javascript">
+	$('#status-help-button').click(function(e) {
+		e.preventDefault();
+		$('#status-help').slideToggle();
+	})
+</script>
