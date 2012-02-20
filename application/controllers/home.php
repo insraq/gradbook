@@ -59,6 +59,7 @@ class Home extends CI_Controller {
 	{
 		$this->load->helper('astro');
 		$this->load->helper('form');
+		$this->load->helper('date');
 		$user = $this->login->require_login();
 		$profile = R::findOne('profile', 'user_id = ?', array($id));
 		$comment = R::find('comment', 'to_user = ?', array($id));

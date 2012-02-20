@@ -126,7 +126,7 @@
 					<?php if ($c->love == 'public'): ?>
 						<span class="bubble"><i class="icon-volume-up"></i> 表白</span>
 					<?php endif; ?>
-					<span class="bubble">最后更新：<?php echo date('Y-m-d H:i', $c->last_update); ?></span>
+					<span class="bubble">最后更新：<?php echo unix_to_human(gmt_to_local($c->last_update, 'UP8')); ?></span>
 				</div>
 				<p class="public">
 					<?php echo htmlspecialchars($c->public); ?>
