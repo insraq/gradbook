@@ -93,7 +93,7 @@
 				<a href="#" class="bubble left20" id="status-help-button">这是神马？</a>
 			</p>
 			<p>
-				<input type="checkbox" name="accept" value="auto"  <?php echo ($my->accept == 1) ? 'checked' : ''; ?>/> 如果<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>对我表白或者暗恋我，自动接受。
+				<input type="checkbox" name="accept" value="auto"  <?php echo (!empty($my) AND $my->accept == 1) ? 'checked' : ''; ?>/> 如果<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>对我表白或者暗恋我，自动接受。
 			</p>
 			<div id="status-help" style="display:none;">
 				<p>
