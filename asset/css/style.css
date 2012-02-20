@@ -107,6 +107,7 @@ ul.comment {
 ul.comment li {
 	border: 1px solid #ddd;
 	list-style-type: none;
+	margin: 0 0 10px 0;
 }
 
 ul.comment li p {
