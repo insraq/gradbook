@@ -75,11 +75,11 @@
 			</p>
 			<p>
 				<label>对<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>说的话 <span class="bubble"><i class="icon-pencil"></i> 公开</span></label>
-				<textarea class="span9" rows="3" name="public"><?php echo empty($my) ? '' : 'value="' . htmlspecialchars($my->public) . '"'; ?></textarea>
+				<textarea class="span9" rows="3" name="public"><?php echo empty($my) ? '' : htmlspecialchars($my->public) ; ?></textarea>
 			</p>
 			<p>
 				<label>对<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>说的话 <span class="bubble"><i class="icon-lock"></i> 私密</span></label>
-				<textarea class="span9" rows="3" name="private"><?php echo empty($my) ? '' : 'value="' . htmlspecialchars($my->private) . '"'; ?></textarea>
+				<textarea class="span9" rows="3" name="private"><?php echo empty($my) ? '' : htmlspecialchars($my->private) ; ?></textarea>
 			</p>
 			<p>
 				<input type="radio" name="love" value="no" <?php echo (empty($my) OR $my->love == 'no') ? 'checked' : ''; ?> /> <i class="icon-user"></i> 同学
