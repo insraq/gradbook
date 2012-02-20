@@ -13,7 +13,7 @@ class Home extends CI_Controller {
 			'users' => $users,
 			'profile' => R::findOne('profile', 'user_id = ?', array($user->id)),
 			'gender' => array('M' => '男', 'F' => '女'),
-			'count' => R::find('comment', 'to_user = ?', array($user->id))
+			'comment' => R::find('comment', 'to_user = ?', array($user->id))
 		));
 		$this->load->view('footer');
 	}
