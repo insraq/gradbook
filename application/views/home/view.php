@@ -122,7 +122,7 @@
 				<a href="<?php echo site_url('home/view/' . $c->from_user); ?>"><img src="<?php echo base_url('upload/thumb_' . (R::findOne('profile', 'user_id = ?', array($c->from_user))->photo)); ?>" alt="" class="photo-small photo-right" /></a>
 				<div class="meta">
 					<a href="<?php echo site_url('home/view/' . $c->from_user); ?>" class="bubble">来自：<?php echo R::load('user', $c->from_user)->name; ?></a>
-					<span class="bubble">来自：<?php echo $c->word; ?></span>
+					<span class="bubble">一个词形容<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>：<?php echo $c->word; ?></span>
 				</div>
 				<p class="public">
 					<?php echo htmlspecialchars($c->public); ?>
