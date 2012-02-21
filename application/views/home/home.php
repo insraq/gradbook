@@ -39,10 +39,10 @@
 				<p>
 					<span class="bubble">
 						<?php 
-							if (!empty($profile->month) AND !empty($profile->day))
+							if (!empty($u->month) AND !empty($u->day))
 							{
-								$astro = get_astro($profile->month, $profile->day);
-								echo $astro['name'];				
+								$astro = get_astro($u->month, $u->day);
+								echo $astro['name'] . $gender[$u->gender];				
 							}
 						?>	
 					</span>
