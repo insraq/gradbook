@@ -114,6 +114,16 @@ class User extends CI_Controller {
 		$user = $this->login->require_login();
 		$this->load->helper('form');
 		$this->load->view('header', array('title' => '完善个人资料'));
+		$profile = R::findOne('profile', 'user_id = ?', array($user->id));
+		
+		if (!isset($profile->id))
+		{
+			$profile = R::dispense('profile');
+			$profile->user = $user;
+			$profile->college = $user->college;
+			R::store($profile);
+		}
+
 		$data = array(
 			'user' => $user, 
 			'province' => $this->_get_province(),
@@ -123,14 +133,10 @@ class User extends CI_Controller {
 			'faculty' => $this->_get_faculty(),
 			'department' => $this->_get_department(),
 			'ocamp_big' => $this->_get_ocamp_big(),
-			'ocamp_small' => $this->_get_ocamp_small()
+			'ocamp_small' => $this->_get_ocamp_small(),
+			'profile' => R::findOne('profile', 'user_id = ?', array($user->id))
 		);
 
-		$profile = R::findOne('profile', 'user_id = ?', array($user->id));
-		if (isset($profile->id))
-		{
-			$data['profile'] = $profile;
-		}
 		$this->load->view('user/profile', $data);
 		$this->load->view('footer');
 	}
@@ -162,7 +168,8 @@ class User extends CI_Controller {
 				'faculty' => $this->_get_faculty(),
 				'department' => $this->_get_department(),
 				'ocamp_big' => $this->_get_ocamp_big(),
-				'ocamp_small' => $this->_get_ocamp_small()
+				'ocamp_small' => $this->_get_ocamp_small(),
+				'profile' => R::findOne('profile', 'user_id = ?', array($user->id))
 			);
 
 			$profile = R::findOne('profile', 'user_id = ?', array($user->id));
@@ -269,7 +276,7 @@ class User extends CI_Controller {
 			
 			$sid = $this->input->post('user');
 			$password = sha1($this->input->post('password'));
-			$user = R::findOne('user', 'student_id = ? AND password = ?', array($sid, $password));
+			$user = R::findOne('user', 'student_id = ? AND password = ? AND validate = 1', array($sid, $password));
 			if (isset($user->id))
 			{
 				// Session
