@@ -27,7 +27,7 @@
 					<a href="<?php echo site_url('home/filter/ocamp_small/' . urlencode($u->ocamp_small)); ?>" class="bubble"><?php echo $u->ocamp_small; ?></a>
 				</p>
 				<p>
-					<span class="bubble"><?php $astro = get_astro($u->month, $u->day); echo $astro['name']; ?><?php echo $gender[$u->gender]; ?></span>
+					<span class="bubble"><?php if (!empty($u->month) AND !empty($u->day)) { $astro = get_astro($u->month, $u->day); echo $astro['name'] . $gender[$u->gender]; } ?></span>
 					<a href="<?php echo site_url('home/filter/relationship/' . urlencode($u->relationship)); ?>" class="bubble <?php echo $u->relationship == '恋爱中' ? 'bubble-love' : ''; ?>"><?php echo $u->relationship == '恋爱中' ? '<i class="icon-heart icon-white"></i>' : ''; ?> <?php echo $u->relationship; ?></a>
 					<a href="<?php echo site_url('home/filter/aim/' . urlencode($u->aim)); ?>" class="bubble"><?php echo $u->aim; ?></a>
 				</p>

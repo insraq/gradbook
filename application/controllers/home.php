@@ -23,7 +23,7 @@ class Home extends CI_Controller {
 		$user = $this->login->require_login();
 
 		$this->load->helper('astro');
-		$users = R::find('profile', "`{$item}` = ?", array(urldecode($value)));
+		$users = R::find('profile', "`{$item}` = ? AND faculty IS NOT NULL", array(urldecode($value)));
 		$this->load->view('header');
 		$this->load->view('home/filter', array(
 			'users' => $users,
