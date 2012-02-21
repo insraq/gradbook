@@ -30,7 +30,7 @@
 		</p>
 		<p>
 			<b>星座:</b>
-			<?php $astro = get_astro($profile->month, $profile->day); echo $astro['name']; ?><?php echo $gender[$profile->gender]; ?>
+			<?php $astro = get_astro($profile->month, $profile->day); echo $astro['name'] ?: ''; ?><?php echo $gender[$profile->gender]; ?>
 		</p>
 		<p>
 			<b>情感:</b>
