@@ -46,6 +46,7 @@
 							}
 						?>	
 					</span>
+					
 					<a href="<?php echo site_url('home/filter/relationship/' . urlencode($u->relationship)); ?>" class="bubble <?php echo $u->relationship == '恋爱中' ? 'bubble-love' : ''; ?>"><?php echo $u->relationship == '恋爱中' ? '<i class="icon-heart icon-white"></i>' : ''; ?> <?php echo $u->relationship; ?></a>
 					<a href="<?php echo site_url('home/filter/aim/' . urlencode($u->aim)); ?>" class="bubble"><?php echo $u->aim; ?></a>
 				</p>
