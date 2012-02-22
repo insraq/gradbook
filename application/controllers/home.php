@@ -63,17 +63,27 @@ class Home extends CI_Controller {
 		$this->load->helper('date');
 		$user = $this->login->require_login();
 		$profile = R::findOne('profile', 'user_id = ?', array($id));
-		$comment = R::find('comment', 'to_user = ?', array($id));
-		$data = array(
-			'profile' => $profile,
-			'gender' => array('M' => '男', 'F' => '女'),
-			'user' => $user,
-			'my' => R::findOne('comment', 'from_user = ? AND to_user = ?', array($user->id, $id)),
-			'comment' => $comment
-		);
-		$this->load->view('header');
-		$this->load->view('home/view', $data);
-		$this->load->view('footer');
+		if (isset($profile->id))
+		{
+			$comment = R::find('comment', 'to_user = ?', array($id));
+			$data = array(
+				'profile' => $profile,
+				'gender' => array('M' => '男', 'F' => '女'),
+				'user' => $user,
+				'my' => R::findOne('comment', 'from_user = ? AND to_user = ?', array($user->id, $id)),
+				'comment' => $comment
+			);
+			$this->load->view('header');
+			$this->load->view('home/view', $data);
+			$this->load->view('footer');
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('message', array('message' => '用户资料不存在。'));
+			$this->load->view('footer');
+		}
+
 	}
 
 	public function me()
