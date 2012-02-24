@@ -11,27 +11,16 @@
 	<img src="<?php echo base_url('upload/lyrics/' . $user->id . '.png'); ?>" alt="" />
 </p>
 <p>
-	<!-- <a name="xn_share" onclick="shareClick()" type="button_medium" href="javascript:;"></a> -->
-	<script type="text/javascript" charset="utf-8">
-	// (function(){
-	// 	var p = [], w=130, h=24,
-	// 	lk = {
-	// 	url:'<?php echo site_url('widget/lyrics'); ?>'||location.href, /*喜欢的URL(不含如分页等无关参数)*/
-	// 	title:'毕业纪念册：我的歌词帖'||document.title, /*喜欢标题(可选)*/
-	// 	description:'<?php echo $lyrics; ?>', /*喜欢简介(可选)*/
-	// 	image:'<?php echo base_url('upload/lyrics/' . $user->id . '.png'); ?>' /*喜欢相关图片的路径(可选)*/
-	// 	};
-	// 	for(var i in lk){
-	// 	p.push(i + '=' + encodeURIComponent(lk[i]||''));
-	// }
-	// document.write('<iframe scrolling="no" frameborder="0" allowtransparency="true" src="http://www.connect.renren.com/like/v2?'+p.join('&')+'" style="width:'+w+'px;height:'+h+'px;"></iframe>');
-	// })();
-	</script>
-	把鼠标移动到图片上，点击右下角浮现的“人人转发”，一键转发到人人网。
+	
+	<b>如何转发</b>：把鼠标移动到图片上，点击右下角浮现的“人人转发”，一键转发到人人网。
 </p>
-<script type="text/javascript" src="http://widget.renren.com/js/forward.js" async="true"></script>
+<p>
+	转发后，不如再
+	<a name="xn_share" onclick="shareClick()" type="button_medium" href="javascript:;"></a>
+	一下，让更多人知道。
+</p>
 
-<!-- 
+<script type="text/javascript" src="http://widget.renren.com/js/forward.js" async="true"></script>
 <script type="text/javascript" src="http://widget.renren.com/js/rrshare.js"></script>
 <script type="text/javascript">
 	function shareClick() {
@@ -43,4 +32,4 @@
 		};
 		rrShareOnclick(rrShareParam);
 	}
-</script> -->
+</script>
