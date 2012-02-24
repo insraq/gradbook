@@ -12,7 +12,7 @@
 </p>
 <p>
 	<!-- <a name="xn_share" onclick="shareClick()" type="button_medium" href="javascript:;"></a> -->
-	// <script type="text/javascript" charset="utf-8">
+	<script type="text/javascript" charset="utf-8">
 	// (function(){
 	// 	var p = [], w=130, h=24,
 	// 	lk = {
@@ -26,7 +26,7 @@
 	// }
 	// document.write('<iframe scrolling="no" frameborder="0" allowtransparency="true" src="http://www.connect.renren.com/like/v2?'+p.join('&')+'" style="width:'+w+'px;height:'+h+'px;"></iframe>');
 	// })();
-	// </script>
+	</script>
 	把鼠标移动到图片上，点击右下角浮现的“人人转发”，一键转发到人人网。
 </p>
 <script type="text/javascript" src="http://widget.renren.com/js/forward.js" async="true"></script>
