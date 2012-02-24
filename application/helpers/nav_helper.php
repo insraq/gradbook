@@ -6,6 +6,7 @@
             '首页' => '',
             '修改资料' => 'user/profile',
             '08 OCamp' => 'home/ocamp',
+            '歌词帖' => 'widget/lyrics',
             '登出' => 'user/logout'
         );
 
