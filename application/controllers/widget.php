@@ -15,7 +15,9 @@ class Widget extends CI_Controller {
 		$size = 30;
 		$gap = 50;
 
-		$line = $this->_get_lyrics();		
+		$db = $this->_get_lyrics();
+		$key = array_rand($db);
+		$line = $db[$key];
 
 		$output = explode('/', $line);
 
@@ -25,18 +27,20 @@ class Widget extends CI_Controller {
 			imagettftext($im, $size, 0, 20, 50 + $i * $gap, $text, $font, $o);
 			$i++;
 		}
-
 		
 		imagettftext($im, 12, 0, 300, 280, $text, $font, $user->name . ' @ GRAD.CUHK.ME | 毕业纪念册');
 		
-		header('Content-type: image/png');
-		imagepng($im);
+		imagepng($im, './upload/lyrics/' . $user->id . '.png');
 		imagedestroy($im);
+
+		$this->load->view('header');
+		$this->load->view('widget/lyrics', array('user' => $user, 'lyrics' => $line));
+		$this->load->view('footer');
 	}
 
 	private function _get_lyrics()
 	{
-		$db = array(
+		return array(
 			'少了我的手臂当枕头/你习不习惯/你的望远镜/望不到我北半球的孤单',
 			'让心跳停了/时间就会暂停/想告诉你/我只会跟你到这里',
 			'忘掉爱过的他/当初的喜帖金箔印着那位他/裱起婚纱照那道墙/及一切美丽旧年华',
@@ -48,10 +52,8 @@ class Widget extends CI_Controller {
 			'当你孤单你会想起谁/你想不想找个人来陪/你的快乐伤悲/只有我能体会',
 			'把一个人的温暖/转移到另一个的胸膛/让上次犯的错/反省出梦想',
 			'爱情不是你想卖/想买就能卖/让我挣开让我明白/放手你的爱',
-			'那年夏天我和你躲在/这一大片宁静的海/直到后来我们都还在/对整个世界充满期待'
+			'那年夏天我和你躲在/这一大片宁静的海/直到后来我们都还在/对整个世界充满期待',
+			'蓝色的思念/突然演变成了阳光的夏天/空气中的温暖/不会很遥远'
 		);
-
-		$key = array_rand($db);
-		return $db[$key];
 	}
 }
