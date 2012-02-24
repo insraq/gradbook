@@ -6,7 +6,7 @@ class Widget extends CI_Controller {
 	{
 		$user = $this->login->require_login();
 
-		$im = imagecreatetruecolor(600, 300);
+		$im = imagecreatetruecolor(700, 300);
 		$bg = imagecolorallocate($im, 0, 153, 255);
 		imagefill($im, 0, 0, $bg);
 
@@ -28,7 +28,7 @@ class Widget extends CI_Controller {
 			$i++;
 		}
 		
-		imagettftext($im, 12, 0, 300, 280, $text, $font, $user->name . ' @ GRAD.CUHK.ME | 毕业纪念册');
+		imagettftext($im, 12, 0, 400, 280, $text, $font, $user->name . ' @ GRAD.CUHK.ME | 毕业纪念册');
 		
 		imagepng($im, './upload/lyrics/' . $user->id . '.png');
 		imagedestroy($im);
