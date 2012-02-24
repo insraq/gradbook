@@ -6,7 +6,7 @@
 </div>
 <?php endif; ?>
 
-<h2>你的歌词帖</h2>
+<h2>我的歌词帖</h2>
 <p>
 	<img src="<?php echo base_url('upload/lyrics/' . $user->id . '.png'); ?>" alt="" />
 </p>
