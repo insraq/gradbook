@@ -11,17 +11,35 @@
 	<img src="<?php echo base_url('upload/lyrics/' . $user->id . '.png'); ?>" alt="" />
 </p>
 <p>
-	<a name="xn_share" onclick="shareClick()" type="button_medium" href="javascript:;"></a>
+	<!-- <a name="xn_share" onclick="shareClick()" type="button_medium" href="javascript:;"></a> -->
+	<script type="text/javascript" charset="utf-8">
+	(function(){
+		var p = [], w=130, h=24,
+		lk = {
+		url:'<?php echo site_url('widget/lyrics'); ?>'||location.href, /*喜欢的URL(不含如分页等无关参数)*/
+		title:'毕业纪念册：我的歌词帖'||document.title, /*喜欢标题(可选)*/
+		description:'<?php echo $lyrics; ?>', /*喜欢简介(可选)*/
+		image:'<?php echo base_url('upload/lyrics/' . $user->id . '.png'); ?>' /*喜欢相关图片的路径(可选)*/
+		};
+		for(var i in lk){
+		p.push(i + '=' + encodeURIComponent(lk[i]||''));
+	}
+	document.write('<iframe scrolling="no" frameborder="0" allowtransparency="true" src="http://www.connect.renren.com/like/v2?'+p.join('&')+'" style="width:'+w+'px;height:'+h+'px;"></iframe>');
+	})();
+	</script>
 </p>
+
+
+<!-- 
 <script type="text/javascript" src="http://widget.renren.com/js/rrshare.js"></script>
 <script type="text/javascript">
 	function shareClick() {
 		var rrShareParam = {
-			resourceUrl : 'http://grad.cuhk.me/widget/lyrics',
-			pic : 'http://grad.cuhk.me/upload/lyrics/<?php echo $user->id; ?>.png',
+			resourceUrl : '<?php echo site_url('widget/lyrics'); ?>',
+			pic : '<?php echo base_url('upload/lyrics/' . $user->id . '.png'); ?>',
 			title : '毕业纪念册：我的歌词帖',
 			description : '<?php echo $lyrics; ?>'
 		};
 		rrShareOnclick(rrShareParam);
 	}
-</script>
+</script> -->
