@@ -18,7 +18,7 @@
 	function shareClick() {
 		var rrShareParam = {
 			resourceUrl : 'http://grad.cuhk.me/widget/lyrics',
-			pic : 'http://grad.cuhk.me/widget/lyrics',
+			pic : 'http://grad.cuhk.me/upload/lyrics/<?php echo $user->id; ?>.png',
 			title : '毕业纪念册：我的歌词帖',
 			description : '<?php echo $lyrics; ?>'
 		};
