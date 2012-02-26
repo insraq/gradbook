@@ -124,6 +124,7 @@ ul.comment li .private {
 }
 
 ul.comment li.love {
+	border: 1px solid #FFD1FC;
 	background: #FFF0FE;
 }
 
