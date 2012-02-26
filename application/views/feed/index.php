@@ -10,7 +10,7 @@
 			<a href="<?php echo site_url('home/view/' . $c->to_user); ?>" class="bubble">留给：<?php echo R::load('user', $c->to_user)->name; ?></a>
 			<span class="bubble">一个词形容<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>：<?php echo $c->word; ?></span>
 			<?php if ($c->love == 'public'): ?>
-				<span class="bubble"><i class="icon-volume-up"></i> 表白</span>
+				<span class="bubble"><i class="icon-volume-up icon-white"></i> 表白</span>
 			<?php endif; ?>
 			<span class="bubble">最后更新：<?php echo date('Y-m-d H:i', $c->last_update); ?></span>
 		</div>
