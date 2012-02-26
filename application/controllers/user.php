@@ -109,6 +109,84 @@ class User extends CI_Controller {
 		}
 	}
 
+	public function reset_email($id)
+	{
+		$this->load->library('email');
+
+		$user = R::load('user', $id);
+
+		$this->email->from('no-reply@cuhk.me', 'CUHK Graduate Book 2012');
+		$this->email->reply_to('sun@ruoyu.me', 'SUN Ruoyu');
+
+		$email = 's' . substr($user->student_id, 0, -1) . '@mailserv.cuhk.edu.hk';
+		$this->email->to($email);
+
+		$this->email->subject('Reset your password of CUHK Graduate Book 2012');
+
+		$this->load->helper('string');
+		$r = R::dispense('reset');
+		$r->user = $user;
+		$r->code = random_string('alnum', 16);
+		R::store($r);
+
+		$url = site_url("user/reset/{$user->id}/{$r->code}");
+		$this->email->message('We have received a request of resetting your password of CUHK Graduate Book 2012. If you do not want to reset your password, you can ignore this email. Otherwise, please click the following link to proceed: ' . $url);
+
+		$this->email->send();
+	}
+
+	public function reset($id, $code)
+	{
+		$r = R::findOne('reset', 'user_id = ?', array($id));
+		if (isset($r->id))
+		{
+			if ($r->code == $code)
+			{
+				$user = R::load('user', $r->user_id);
+				$this->session->set_userdata(array('reset_id' => $r->id));
+				$this->load->helper('form');
+				$this->load->view('header', array('title' => '重设密码'));
+				$this->load->view('user/forget', array('user' => $user));
+				$this->load->view('footer');
+			}
+			else
+			{
+				$this->load->view('header', array('title' => '验证失败'));
+				$this->load->view('message', array('type' => 'alert-error', 'message' => '验证信息已经失效。'));
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header', array('title' => '验证错误'));
+			$this->load->view('message', array('type' => 'alert-error', 'message' => '验证信息不存在。'));
+			$this->load->view('footer');
+		}
+	}
+
+	public function reset_submit()
+	{
+		$r_id = $this->session->userdata('reset_id');
+		if (empty($r_id))
+		{
+			$this->load->view('header', array('title' => '重设错误'));
+			$this->load->view('message', array('type' => 'alert-error', 'message' => '重设信息不存在。'));
+			$this->load->view('footer');
+		}
+		else
+		{
+			$r = R::load('reset', $r_id);
+			$user = R::load('user', $r->user_id);
+			$user->password = sha1($this->input->post('password'));
+			R::store($user);
+			R::trash($r);
+			$this->session->unset_userdata('reset_id');
+			$this->load->view('header', array('title' => '重设成功'));
+			$this->load->view('message', array('type' => 'alert-success', 'message' => '密码重设成功，请返回首页重新登录。'));
+			$this->load->view('footer');
+		}
+	}
+
 	public function profile()
 	{
 		$user = $this->login->require_login();
