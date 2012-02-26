@@ -12,7 +12,7 @@
 		<div class="meta">
 			<a href="<?php echo site_url('home/view/' . $c->from_user); ?>" class="bubble">来自：<?php echo R::load('user', $c->from_user)->name; ?></a>
 			<a href="<?php echo site_url('home/view/' . $c->to_user); ?>" class="bubble">留给：<?php echo R::load('user', $c->to_user)->name; ?></a>
-			<span class="bubble">一个词形容<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>：<?php echo $c->word; ?></span>
+			<span class="bubble">一个词形容：<?php echo $c->word; ?></span>
 			<?php if ($c->love == 'public'): ?>
 				<span class="bubble"><i class="icon-volume-up icon-white"></i> 表白</span>
 			<?php endif; ?>
