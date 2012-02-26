@@ -122,3 +122,7 @@ ul.comment li .meta {
 ul.comment li .private {
 	background: #f4f4f4;
 }
+
+ul.comment li.love {
+	background: #FFB3F9;
+}

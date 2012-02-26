@@ -3,7 +3,7 @@
 <h2>路边社</h2>
 <ul class="comment">
 	<?php foreach ($comment as $c): ?>
-	<li>
+	<li <?php if ($c->love == 'public'): ?>class="love"<?php endif; ?>>
 		<a href="<?php echo site_url('home/view/' . $c->from_user); ?>"><img src="<?php echo R::findOne('profile', 'user_id = ?', array($c->from_user))->photo ? base_url('upload/thumb_' . (R::findOne('profile', 'user_id = ?', array($c->from_user))->photo)) : base_url('asset/img/avatar.png'); ?>" alt="" class="photo-small photo-right" /></a>
 		<div class="meta">
 			<a href="<?php echo site_url('home/view/' . $c->from_user); ?>" class="bubble">来自：<?php echo R::load('user', $c->from_user)->name; ?></a>
