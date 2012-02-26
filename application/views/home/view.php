@@ -91,7 +91,7 @@
 				<textarea class="span9" rows="3" name="private"><?php echo empty($my) ? '' : htmlspecialchars($my->private) ; ?></textarea>
 			</p>
 			<p>
-				<input type="radio" name="love" value="no" <?php echo (empty($my) OR $my->love == 'no') ? 'checked' : ''; ?> /> <i class="icon-user"></i> 基友/闺蜜
+				<input type="radio" name="love" value="no" <?php echo (empty($my) OR $my->love == 'no') ? 'checked' : ''; ?> /> <i class="icon-user"></i> BFF、基友、闺蜜
 				<input type="radio" name="love" value="already" <?php echo (!empty($my) AND $my->love == 'already') ? 'checked' : ''; ?> /> <i class="icon-heart"></i> 情侣
 				<input type="radio" name="love" value="public" <?php echo (!empty($my) AND $my->love == 'public') ? 'checked' : ''; ?> /> <i class="icon-volume-up"></i> 表白
 				<input type="radio" name="love" value="private" <?php echo (!empty($my) AND $my->love == 'private') ? 'checked' : ''; ?> /> <i class="icon-random"></i> 暗恋
@@ -102,7 +102,7 @@
 			</p>
 			<div id="status-help" style="display:none;">
 				<p>
-					<span class="bubble"><i class="icon-user"></i> 基友/闺蜜</span>
+					<span class="bubble"><i class="icon-user"></i> BFF、基友、闺蜜</span>
 					我和<?php echo ($profile->gender == 'M') ? '他' : '她'; ?>是绝对最纯洁基友或闺蜜关系，绝对经得起时间考验。
 				</p>
 				<p>
