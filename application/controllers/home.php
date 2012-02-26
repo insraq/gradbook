@@ -7,7 +7,7 @@ class Home extends CI_Controller {
 		$user = $this->login->require_login();
 
 		$this->load->helper('astro');
-		$users = R::find('profile', 'faculty IS NOT NULL');
+		$users = R::find('profile', 'faculty IS NOT NULL ORDER BY RAND()');
 		$this->load->view('header');
 		$this->load->view('home/home', array(
 			'users' => $users,
