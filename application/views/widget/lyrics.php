@@ -1,4 +1,4 @@
-<?php echo nav(3);?>
+<?php echo nav(4);?>
 <h2>我的歌词帖</h2>
 <p>
 	<img src="<?php echo base_url('upload/lyrics/' . $user->id . '.png'); ?>" alt="" />
