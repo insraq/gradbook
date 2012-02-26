@@ -126,3 +126,13 @@ ul.comment li .private {
 ul.comment li.love {
 	background: #FFF0FE;
 }
+
+ul.comment li.love .bubble {
+	background: #FF7AB4;
+	color: white;
+}
+
+ul.comment li.love .bubble:hover {
+	background: #FF7AB4;
+	color: white;
+}
