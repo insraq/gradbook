@@ -22,4 +22,18 @@ class Login {
 			return R::load('user', $user_id);
 		}
 	}
+
+	public function require_admin()
+	{
+		$user_id = $this->CI->session->userdata('user_id');
+		if (!empty($user_id) AND $user_id == 1)
+		{
+			return R::load('user', $user_id);
+		}
+		else
+		{
+			redirect('user/login');
+			exit();
+		}
+	}
 }

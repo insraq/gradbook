@@ -111,18 +111,15 @@ class User extends CI_Controller {
 
 	public function reset_email($id)
 	{
+		$this->login->require_admin();
+
 		$this->load->library('email');
-
 		$user = R::load('user', $id);
-
 		$this->email->from('no-reply@cuhk.me', 'CUHK Graduate Book 2012');
 		$this->email->reply_to('sun@ruoyu.me', 'SUN Ruoyu');
-
 		$email = 's' . substr($user->student_id, 0, -1) . '@mailserv.cuhk.edu.hk';
 		$this->email->to($email);
-
 		$this->email->subject('Reset your password of CUHK Graduate Book 2012');
-
 		$this->load->helper('string');
 		$r = R::dispense('reset');
 		$r->user = $user;
