@@ -1,4 +1,4 @@
-<?php echo nav();?>
+<?php echo nav(3);?>
 
 <h2>路边社</h2>
 <ul class="comment">
