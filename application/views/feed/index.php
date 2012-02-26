@@ -2,7 +2,7 @@
 
 <h2>路边社：查看所有</h2>
 <p>
-	<a href="<?php echo site_url('feed'); ?>" class="btn">查看所有</a>
+	<a href="<?php echo site_url('feed'); ?>" class="btn btn-primary">查看所有</a>
 	<a href="<?php echo site_url('feed/love'); ?>" class="btn">只看表白</a>
 </p>
 <ul class="comment">
