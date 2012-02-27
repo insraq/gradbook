@@ -17,7 +17,7 @@
 	<?php 
 		foreach ($notify as $n)
 		{
-			echo '<a href="' . site_url('home/view/' . $n->from_user) . '" class="btn btn-success"><i class="icon-heart icon-white"></i> ' . R::load('user', $n->from_user)->name . '</a> ';
+			echo '<a href="' . site_url('home/view/' . $n->from_user) . '" class="btn btn-danger"><i class="icon-heart icon-white"></i> ' . R::load('user', $n->from_user)->name . '</a> ';
 		}
 	?>
 	也暗恋你。
