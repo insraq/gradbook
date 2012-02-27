@@ -10,10 +10,10 @@ class Home extends CI_Controller {
 		$users = R::find('profile', 'faculty IS NOT NULL ORDER BY ISNULL(photo) ASC, RAND()');
 		// 暗恋功能
 		$notify = array();
-		$love = R::find('comment', 'from_user = ? AND love = private', array($user->id));	// 我暗恋的人
+		$love = R::find('comment', 'from_user = ? AND love = "private"', array($user->id));	// 我暗恋的人
 		foreach ($love as $l)
 		{
-			$match = R::find('comment', 'from_user = ? AND love = private', array($l->to_user));	//检查是否暗恋我
+			$match = R::find('comment', 'from_user = ? AND to_user = ? AND love = "private"', array($l->to_user, $user->id));	//检查是否暗恋我
 			if ($match)
 				$notify[] = $match;
 		}
