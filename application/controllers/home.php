@@ -8,12 +8,22 @@ class Home extends CI_Controller {
 
 		$this->load->helper('astro');
 		$users = R::find('profile', 'faculty IS NOT NULL ORDER BY ISNULL(photo) ASC, RAND()');
+		// 暗恋功能
+		$notify = array();
+		$love = R::find('comment', 'from_user = ? AND love = private', array($user->id));	// 我暗恋的人
+		foreach ($love as $l)
+		{
+			$match = R::find('comment', 'from_user = ? AND love = private', array($l->to_user));	//检查是否暗恋我
+			if ($match)
+				$notify[] = $match;
+		}
 		$this->load->view('header');
 		$this->load->view('home/home', array(
 			'users' => $users,
 			'profile' => R::findOne('profile', 'user_id = ?', array($user->id)),
 			'gender' => array('M' => '男', 'F' => '女'),
-			'comment' => R::find('comment', 'to_user = ?', array($user->id))
+			'comment' => R::find('comment', 'to_user = ?', array($user->id)),
+			'notify' => $notify
 		));
 		$this->load->view('footer');
 	}
