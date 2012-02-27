@@ -13,9 +13,9 @@ class Home extends CI_Controller {
 		$love = R::find('comment', 'from_user = ? AND love = "private"', array($user->id));	// 我暗恋的人
 		foreach ($love as $l)
 		{
-			$match = R::find('comment', 'from_user = ? AND to_user = ? AND love = "private"', array($l->to_user, $user->id));	//检查是否暗恋我
+			$match = R::findOne('comment', 'from_user = ? AND to_user = ? AND love = "private"', array($l->to_user, $user->id));	//检查是否暗恋我
 			if ($match)
-				$notify[] = $match->export();
+				$notify[] = $match;
 		}
 		$this->load->view('header');
 		$this->load->view('home/home', array(
