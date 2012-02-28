@@ -2,9 +2,17 @@
 
 class Feed extends CI_Controller {
 
+	private $user;
+
+	public function __construct()
+	{
+	    parent::__construct();
+	    $this->user = $this->login->require_login();
+	}
+
 	public function index()
 	{
-		$user = $this->login->require_login();
+		$user = $this->user;
 		// $this->load->helper('astro');
 		$this->load->view('header');
 		$this->load->view('feed/index', array(
@@ -18,7 +26,7 @@ class Feed extends CI_Controller {
 
 	public function love()
 	{
-		$user = $this->login->require_login();
+		$user = $this->user;
 		// $this->load->helper('astro');
 		$this->load->view('header');
 		$this->load->view('feed/love', array(

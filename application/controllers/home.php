@@ -2,9 +2,17 @@
 
 class Home extends CI_Controller {
 
+	private $user;
+
+	public function __construct()
+	{
+	    parent::__construct();
+	    $this->user = $this->login->require_login();
+	}
+
 	public function index()
 	{
-		$user = $this->login->require_login();
+		$user = $this->user;
 
 		$this->load->helper('astro');
 		$users = R::find('profile', 'faculty IS NOT NULL ORDER BY ISNULL(photo) ASC, RAND()');
@@ -30,7 +38,7 @@ class Home extends CI_Controller {
 
 	public function filter($item, $value)
 	{
-		$user = $this->login->require_login();
+		$user = $this->user;
 
 		$this->load->helper('astro');
 		$users = R::find('profile', "`{$item}` = ? AND faculty IS NOT NULL", array(urldecode($value)));
@@ -46,7 +54,7 @@ class Home extends CI_Controller {
 
 	public function ocamp()
 	{
-		$user = $this->login->require_login();
+		$user = $this->user;
 		
 		$group = array(
 			'八达通' => array('东涌', '西贡', '南昌', '北角', '中环'),
@@ -98,7 +106,7 @@ class Home extends CI_Controller {
 
 	public function me()
 	{
-		$user = $this->login->require_login();
+		$user = $this->user;
 		redirect('home/view/' . $user->id);
 	}
 }

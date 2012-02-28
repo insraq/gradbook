@@ -2,8 +2,17 @@
 
 class Comment extends CI_Controller {
 
-	public function update($id) {
-		$user = $this->login->require_login();
+	private $user;
+
+	public function __construct()
+	{
+	    parent::__construct();
+	    $this->user = $this->login->require_login();
+	}
+
+	public function update($id) 
+	{
+		$user = $this->user;
 		if ($user->id == $id)
 		{
 			$this->load->view('header');

@@ -2,9 +2,17 @@
 
 class Widget extends CI_Controller {
 
+	private $user;
+
+	public function __construct()
+	{
+	    parent::__construct();
+	    $this->user = $this->login->require_login();
+	}
+
 	public function lyrics()
 	{
-		$user = $this->login->require_login();
+		$user = $this->user;
 
 		$im = imagecreatetruecolor(600, 300);
 		$bg = imagecolorallocate($im, 0, 153, 255);
