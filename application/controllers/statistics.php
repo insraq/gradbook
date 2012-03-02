@@ -2,6 +2,14 @@
 
 class Statistics extends CI_Controller {
 
+	private $user;
+
+	public function __construct()
+	{
+	    parent::__construct();
+	    $this->user = $this->login->require_login();
+	}
+
 	public function index()
 	{
 		$url = array();
