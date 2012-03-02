@@ -5,7 +5,7 @@ class Statistics extends CI_Controller {
 	public function index()
 	{
 		$url = array();
-
+		$title_general = '香港中文大学2012毕业纪念册风云统计之';
 		// 统计性别
 		$gender = array('M', 'F');
 		$gender_name = array('M' => '男', 'F' => '女');
@@ -16,7 +16,7 @@ class Statistics extends CI_Controller {
 			$k = "{$gender_name[$g]} ({$v})";
 			$data[$k] = $v;
 		}
-		$url[] = $this->_get_chart('性别', $data);
+		$url[] = $this->_get_chart($title_general . '「性别」', $data);
 
 		// 统计书院
 		$college = array('崇基书院', '新亚书院', '联合书院', '逸夫书院');
@@ -27,7 +27,7 @@ class Statistics extends CI_Controller {
 			$k = "{$c} ({$v})";
 			$data[$k] = $v;
 		}
-		$url[] = $this->_get_chart('书院', $data);
+		$url[] = $this->_get_chart($title_general . '「书院」', $data);
 
 		// 统计学院
 		$faculty = array(
@@ -40,7 +40,7 @@ class Statistics extends CI_Controller {
 			$k = "{$f} ({$v})";
 			$data[$k] = $v;
 		}
-		$url[] = $this->_get_chart('学院', $data);
+		$url[] = $this->_get_chart($title_general . '「学院」', $data);
 
 		// 统计毕业去向
 		$aim = array('留港工作', '出国工作', '内地工作', '香港读书', '出国读书', '内地读书', '其他');
@@ -51,7 +51,7 @@ class Statistics extends CI_Controller {
 			$k = "{$a} ({$v})";
 			$data[$k] = $v;
 		}
-		$url[] = $this->_get_chart('毕业去向', $data);
+		$url[] = $this->_get_chart($title_general . '「毕业去向」', $data);
 
 		// 统计情感
 		$relationship = array('单身', '恋爱中', '说不准', '不想说');
@@ -62,7 +62,7 @@ class Statistics extends CI_Controller {
 			$k = "{$r} ({$v})";
 			$data[$k] = $v;
 		}
-		$url[] = $this->_get_chart('情感', $data);
+		$url[] = $this->_get_chart($title_general . '「情感」', $data);
 
 		$this->load->view('header');
 		$this->load->view('statistics/index', array('url' => $url));
