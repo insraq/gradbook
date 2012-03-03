@@ -109,4 +109,13 @@ class Home extends CI_Controller {
 		$user = $this->user;
 		redirect('home/view/' . $user->id);
 	}
+
+	public function contact()
+	{
+		$user = $this->user;
+		$profile = R::find('profile', 'faculty IS NOT NULL ORDER BY ocamp_big ASC, ocamp_small ASC');
+		$this->load->view('header');
+		$this->load->view('home/contact', array('profile' => $profile));
+		$this->load->view('footer');
+	}
 }
