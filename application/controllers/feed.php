@@ -22,7 +22,7 @@ class Feed extends CI_Controller {
 		$config['base_url'] = site_url('feed/page');
 		$config['total_rows'] = count(R::find('comment'));
 		$config['per_page'] = 20;
-		$config['full_tag_open'] = '<div class="pagination"><ul>';
+		$config['full_tag_open'] = '<div class="pagination pagination-centered"><ul>';
 		$config['full_tag_close'] = '</ul></div>';
 		$config['next_tag_open'] = '<li>';
 		$config['next_tag_open'] = '</li>';
