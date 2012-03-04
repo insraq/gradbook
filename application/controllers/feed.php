@@ -15,7 +15,7 @@ class Feed extends CI_Controller {
 		redirect('feed/page');
 	}
 
-	public function page($id = 20)
+	public function page($id = 0)
 	{
 		$this->load->library('pagination');
 
