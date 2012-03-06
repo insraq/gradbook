@@ -46,6 +46,47 @@ class Widget extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function one()
+	{
+		$user = $this->user;
+		$this->load->view('header');
+		$this->load->view('widget/one', array('user' => $user));
+		$this->load->view('footer');
+	}
+
+	public function one_sentence()
+	{
+		$user = $this->user;
+
+		$im = imagecreatetruecolor(600, 300);
+		$bg = imagecolorallocate($im, 255, 144, 0);
+		imagefill($im, 0, 0, $bg);
+
+		$text = imagecolorallocate($im, 255, 255, 255);
+		$font = 'asset/font/wqy.ttc';
+		$size = 30;
+		$gap = 50;
+		$length = 13;
+
+		$sentence = $this->input->post('sentence');
+
+		$lines = mb_strlen($sentence) / $length;
+
+		for ($i = 0; $i < $lines; $i++)
+		{
+			imagettftext($im, $size, 0, 20, 50 + $i * $gap, $text, $font, mb_substr($sentence, $i * $length, $length));	
+		}
+
+		imagettftext($im, 12, 0, 120, 280, $text, $font, $user->name . ' @ GRAD.CUHK.ME | 毕业纪念册 - 一句话证明你读过中大');
+		
+		imagepng($im, "./upload/one_sentence/{$user->id}.png");
+		imagedestroy($im);
+
+		$this->load->view('header');
+		$this->load->view('widget/one_sentence', array('user' => $user, 'one_sentence' => $sentence));
+		$this->load->view('footer');
+	}
+
 	private function _get_lyrics()
 	{
 		return array(

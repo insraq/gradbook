@@ -9,6 +9,7 @@
             '路边社' => 'feed',
             '歌词帖' => 'widget/lyrics',
             '风云榜' => 'statistics',
+            '一句话' => 'widget/one',
             '登出' => 'user/logout'
         );
 
