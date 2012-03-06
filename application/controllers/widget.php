@@ -86,7 +86,7 @@ class Widget extends CI_Controller {
 		$s->user = $user;
 		$s->text = $sentence;
 		$s->created_at = time();
-		R::store($sentence);
+		R::store($s);
 
 		$this->load->view('header');
 		$this->load->view('widget/one_sentence', array('user' => $user, 'one_sentence' => $sentence));
