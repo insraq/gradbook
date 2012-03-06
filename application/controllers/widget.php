@@ -82,6 +82,12 @@ class Widget extends CI_Controller {
 		imagepng($im, "./upload/one_sentence/{$user->id}.png");
 		imagedestroy($im);
 
+		$s = R::dispense('sentence');
+		$s->user = $user;
+		$s->text = $sentence;
+		$s->created_at = time();
+		R::store($sentence);
+
 		$this->load->view('header');
 		$this->load->view('widget/one_sentence', array('user' => $user, 'one_sentence' => $sentence));
 		$this->load->view('footer');
