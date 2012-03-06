@@ -1,4 +1,4 @@
-<?php echo nav(4);?>
+<?php echo nav(6);?>
 <h2>一句话证明你读过中大</h2>
 <form action="<?php echo site_url('widget/one_sentence');?>" method="post" class="well">
 	<p>
