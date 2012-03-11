@@ -109,27 +109,49 @@ class User extends CI_Controller {
 		}
 	}
 
-	public function reset_email($id)
+	public function forget()
 	{
-		$this->login->require_admin();
+		$this->load->helper('form');
+		$this->load->view('header', array('title' => '找回密码'));
+		$this->load->view('user/forget');
+		$this->load->view('footer');
+	}
 
+	public function reset_email()
+	{
 		$this->load->library('email');
-		$user = R::load('user', $id);
-		$this->email->from('no-reply@cuhk.me', 'CUHK Graduate Book 2012');
-		$this->email->reply_to('sun@ruoyu.me', 'SUN Ruoyu');
-		$email = 's' . substr($user->student_id, 0, -1) . '@mailserv.cuhk.edu.hk';
-		$this->email->to($email);
-		$this->email->subject('Reset your password of CUHK Graduate Book 2012');
-		$this->load->helper('string');
-		$r = R::dispense('reset');
-		$r->user = $user;
-		$r->code = random_string('alnum', 16);
-		R::store($r);
+		$sid = $this->input->post('user');
+		$user = R::findOne('user', 'student_id = ?', array($sid));
+		
+		if (isset($user->id))
+		{
+			$this->email->from('no-reply@cuhk.me', 'CUHK Graduate Book 2012');
+			$this->email->reply_to('sun@ruoyu.me', 'SUN Ruoyu');
+			$email = 's' . substr($user->student_id, 0, -1) . '@mailserv.cuhk.edu.hk';
+			$this->email->to($email);
+			$this->email->subject('Reset your password of CUHK Graduate Book 2012');
+			$this->load->helper('string');
+			
+			$r = R::dispense('reset');
+			$r->user = $user;
+			$r->code = random_string('alnum', 16);
+			R::store($r);
 
-		$url = site_url("user/reset/{$user->id}/{$r->code}");
-		$this->email->message('We have received a request of resetting your password of CUHK Graduate Book 2012. If you do not want to reset your password, you can ignore this email. Otherwise, please click the following link to proceed: ' . $url);
+			$url = site_url("user/reset/{$user->id}/{$r->code}");
+			$this->email->message('We have received a request of resetting your password of CUHK Graduate Book 2012. If you do not want to reset your password, you can ignore this email. Otherwise, please click the following link to proceed: ' . $url);
+			$this->email->send();
 
-		$this->email->send();
+			$this->load->view('header', array('title' => '找回密码'));
+			$this->load->view('message', array('type' => 'alert-success', 'message' => '已经发送一封邮件到你的 <b>中大邮箱</b>，请根据邮件提示完成密码重置。'));
+			$this->load->view('footer');
+		}
+		else
+		{
+			$this->load->view('header', array('title' => '用户错误'));
+			$this->load->view('message', array('type' => 'alert-error', 'message' => '用户信息不存在。'));
+			$this->load->view('footer');
+		}
+
 	}
 
 	public function reset($id, $code)
@@ -143,7 +165,7 @@ class User extends CI_Controller {
 				$this->session->set_userdata(array('reset_id' => $r->id));
 				$this->load->helper('form');
 				$this->load->view('header', array('title' => '重设密码'));
-				$this->load->view('user/forget', array('user' => $user));
+				$this->load->view('user/reset', array('user' => $user));
 				$this->load->view('footer');
 			}
 			else
