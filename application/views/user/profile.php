@@ -198,7 +198,7 @@
 	</fieldset>
 
 	<div class="form-actions">
-		<button type="submit" class="btn btn-primary">下一步</button>
+		<button type="submit" class="btn btn-primary">保存</button>
 		<button type="reset" class="btn">取消</button>
 	</div>
 <?php echo form_close(); ?>
