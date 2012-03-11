@@ -25,7 +25,7 @@
 				<p>
 					还没注册？立即
 					<a href="<?php echo site_url('user/create'); ?>" class="btn">创建用户</a>。忘记密码？可以
-					<a href="<?php echo site_url('user/forget'); ?>" class="btn">立即找回</a>。
+					<a href="<?php echo site_url('user/forget'); ?>" class="btn">立即重设</a>。
 				</p>
 			</div>
 		</div>
