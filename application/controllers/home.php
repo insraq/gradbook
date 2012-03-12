@@ -49,8 +49,10 @@ class Home extends CI_Controller {
 				break;
 			case '3':
 				$extra = 'AND relationship = "恋爱中" AND gender = "M"';
+				break;
 			case '4':
 				$extra = 'AND relationship = "恋爱中" AND gender = "F"';
+				break;
 			default:
 				$extra = '';
 				break;
