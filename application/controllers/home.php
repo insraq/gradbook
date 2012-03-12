@@ -57,7 +57,7 @@ class Home extends CI_Controller {
 		}
 
 		$this->load->helper('astro');
-		$users = R::find('profile', "`{$item}` = ? AND faculty IS NOT NULL" . $extra, array(urldecode($value)));
+		$users = R::find('profile', "`{$item}` = ? AND faculty IS NOT NULL " . $extra, array(urldecode($value)));
 		$this->load->view('header');
 		$this->load->view('home/filter', array(
 			'users' => $users,
