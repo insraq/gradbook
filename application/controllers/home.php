@@ -36,12 +36,28 @@ class Home extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function filter($item, $value)
+	public function filter($item, $value, $value)
 	{
 		$user = $this->user;
 
+		switch ($value) {
+			case '1':
+				$extra = 'AND relationship = `单身` AND gender = `M`';
+				break;
+			case '2':
+				$extra = 'AND relationship = `单身` AND gender = `F`';
+				break;
+			case '3':
+				$extra = 'AND relationship = `恋爱中` AND gender = `M`';
+			case '4':
+				$extra = 'AND relationship = `恋爱中` AND gender = `F`';
+			default:
+				$extra = '';
+				break;
+		}
+
 		$this->load->helper('astro');
-		$users = R::find('profile', "`{$item}` = ? AND faculty IS NOT NULL", array(urldecode($value)));
+		$users = R::find('profile', "`{$item}` = ? AND faculty IS NOT NULL" . $extra, array(urldecode($value)));
 		$this->load->view('header');
 		$this->load->view('home/filter', array(
 			'users' => $users,
