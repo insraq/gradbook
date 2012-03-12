@@ -36,11 +36,11 @@ class Home extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function filter($item, $value, $value = 0)
+	public function filter($item, $value, $more = 0)
 	{
 		$user = $this->user;
 
-		switch ($value) {
+		switch ($more) {
 			case '1':
 				$extra = 'AND relationship = `单身` AND gender = `M`';
 				break;
