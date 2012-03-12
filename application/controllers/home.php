@@ -36,7 +36,7 @@ class Home extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function filter($item, $value, $value)
+	public function filter($item, $value, $value = 0)
 	{
 		$user = $this->user;
 
