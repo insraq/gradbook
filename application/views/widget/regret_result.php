@@ -1,4 +1,4 @@
-<?php echo nav(6);?>
+<?php echo nav(7;?>
 <h2>大学遗憾的事情</h2>
 <p>
 	<img src="<?php echo base_url("upload/one_sentence/{$file}.png"); ?>" alt="" />
