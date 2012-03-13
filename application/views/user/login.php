@@ -32,9 +32,9 @@
 		<div class="control-group">
 			<div class="controls">
 				<p>
-					<a href="<?php echo site_url('widget/lyrics'); ?>" class="btn btn-info">我的歌词帖</a>
-					<a href="<?php echo site_url('widget/one'); ?>" class="btn btn-info">一句话证明你读过中大</a>
-					<a href="<?php echo site_url('widget/lyrics'); ?>" class="btn btn-info">大学的遗憾</a>
+					<a href="<?php echo site_url('widget/lyrics'); ?>">我的歌词帖</a>
+					<a href="<?php echo site_url('widget/one'); ?>">一句话证明你读过中大</a>
+					<a href="<?php echo site_url('widget/lyrics'); ?>">大学的遗憾</a>
 					这三项功能不需注册即可体验。
 				</p>
 			</div>
