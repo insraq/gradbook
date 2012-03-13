@@ -36,7 +36,7 @@ class Widget extends CI_Controller {
 			$i++;
 		}
 		
-		imagettftext($im, 12, 0, 300, 280, $text, $font, 'GRAD.CUHK.ME | 毕业纪念册');
+		imagettftext($im, 12, 0, 400, 280, $text, $font, 'GRAD.CUHK.ME | 毕业纪念册');
 		
 		$time = time();
 		imagepng($im, "./upload/lyrics/{$time}.png");
@@ -80,12 +80,11 @@ class Widget extends CI_Controller {
 
 		$time = time();
 
-		imagettftext($im, 12, 0, 120, 280, $text, $font, 'GRAD.CUHK.ME | 毕业纪念册 - 一句话证明你读过中大');
+		imagettftext($im, 12, 0, 220, 280, $text, $font, 'GRAD.CUHK.ME | 毕业纪念册 - 一句话证明你读过中大');
 		imagepng($im, "./upload/one_sentence/{$time}.png");
 		imagedestroy($im);
 
 		$s = R::dispense('sentence');
-		$s->user = $user;
 		$s->text = $sentence;
 		$s->created_at = time();
 		R::store($s);
