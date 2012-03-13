@@ -84,13 +84,70 @@ class Widget extends CI_Controller {
 		imagepng($im, "./upload/one_sentence/{$time}.png");
 		imagedestroy($im);
 
-		$s = R::dispense('sentence');
-		$s->text = $sentence;
-		$s->created_at = time();
-		R::store($s);
-
+		$user_id = $this->session->userdata('user_id');
+		if (!empty($user_id))
+		{
+			$s = R::dispense('sentence');
+			$s->text = $sentence;
+			$s->user = R::load('user', $user_id);
+			$s->created_at = time();
+			R::store($s);	
+		}
+		
 		$this->load->view('header');
 		$this->load->view('widget/one_sentence', array('one_sentence' => $sentence, 'file' => $time));
+		$this->load->view('footer');
+	}
+
+	public function regret()
+	{
+		// $user = $this->user;
+		$this->load->view('header');
+		$this->load->view('widget/regret');
+		$this->load->view('footer');
+	}
+
+	public function regret_result()
+	{
+		// $user = $this->user;
+
+		$im = imagecreatetruecolor(600, 300);
+		$bg = imagecolorallocate($im, 255, 144, 0);
+		imagefill($im, 0, 0, $bg);
+
+		$text = imagecolorallocate($im, 255, 255, 255);
+		$font = 'asset/font/wqy.ttc';
+		$size = 30;
+		$gap = 50;
+		$length = 13;
+
+		$sentence = $this->input->post('sentence');
+
+		$lines = mb_strlen($sentence) / $length;
+
+		for ($i = 0; $i < $lines; $i++)
+		{
+			imagettftext($im, $size, 0, 20, 50 + $i * $gap, $text, $font, mb_substr($sentence, $i * $length, $length));	
+		}
+
+		$time = time();
+
+		imagettftext($im, 12, 0, 200, 280, $text, $font, 'GRAD.CUHK.ME | 毕业纪念册 - 一句话证明你读过中大');
+		imagepng($im, "./upload/one_sentence/{$time}.png");
+		imagedestroy($im);
+
+		$user_id = $this->session->userdata('user_id');
+		if (!empty($user_id))
+		{
+			$s = R::dispense('regret');
+			$s->text = $sentence;
+			$s->user = R::load('user', $user_id);
+			$s->created_at = time();
+			R::store($s);	
+		}
+		
+		$this->load->view('header');
+		$this->load->view('widget/regret_result', array('one_sentence' => $sentence, 'file' => $time));
 		$this->load->view('footer');
 	}
 
