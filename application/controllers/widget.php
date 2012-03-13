@@ -112,7 +112,7 @@ class Widget extends CI_Controller {
 		// $user = $this->user;
 
 		$im = imagecreatetruecolor(600, 300);
-		$bg = imagecolorallocate($im, 217, 0, 117);
+		$bg = imagecolorallocate($im, 0, 160, 200);
 		imagefill($im, 0, 0, $bg);
 
 		$text = imagecolorallocate($im, 255, 255, 255);
@@ -132,7 +132,7 @@ class Widget extends CI_Controller {
 
 		$time = time();
 
-		imagettftext($im, 12, 0, 220, 280, $text, $font, 'GRAD.CUHK.ME | 毕业纪念册 - 大学遗憾的事情');
+		imagettftext($im, 12, 0, 240, 280, $text, $font, 'GRAD.CUHK.ME | 毕业纪念册 - 大学遗憾的事情');
 		imagepng($im, "./upload/one_sentence/{$time}.png");
 		imagedestroy($im);
 
