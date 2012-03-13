@@ -24,17 +24,17 @@
 			<div class="controls">
 				<p>
 					还没注册？立即
-					<a href="<?php echo site_url('user/create'); ?>" class="btn">创建用户</a>。忘记密码？可以
-					<a href="<?php echo site_url('user/forget'); ?>" class="btn">立即重设</a>。
+					<a href="<?php echo site_url('user/create'); ?>" class="btn btn-primary">创建用户</a>。忘记密码？可以
+					<a href="<?php echo site_url('user/forget'); ?>" class="btn btn-primary">立即重设</a>。
 				</p>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<p>
-					<a href="<?php echo site_url('widget/lyrics'); ?>">我的歌词帖</a>
-					<a href="<?php echo site_url('widget/one'); ?>">一句话证明你读过中大</a>
-					<a href="<?php echo site_url('widget/lyrics'); ?>">大学的遗憾</a>
+					<a href="<?php echo site_url('widget/lyrics'); ?>" class="btn">我的歌词帖</a>
+					<a href="<?php echo site_url('widget/one'); ?>" class="btn">一句话证明你读过中大</a>
+					<a href="<?php echo site_url('widget/lyrics'); ?>" class="btn">大学的遗憾</a>
 					这三项功能不需注册即可体验。
 				</p>
 			</div>
