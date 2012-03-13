@@ -1,4 +1,4 @@
-<?php echo nav(6);?>
+<?php echo nav(7);?>
 <h2>大学遗憾的事情</h2>
 <form action="<?php echo site_url('widget/regret_result');?>" method="post" class="well">
 	<p>
