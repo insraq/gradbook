@@ -29,6 +29,16 @@
 				</p>
 			</div>
 		</div>
+		<div class="control-group">
+			<div class="controls">
+				<p>
+					<a href="<?php echo site_url('widget/lyrics'); ?>" class="btn">我的歌词帖</a>
+					<a href="<?php echo site_url('widget/one'); ?>" class="btn">一句话证明你读过中大</a>
+					<a href="<?php echo site_url('widget/lyrics'); ?>" class="btn">大学的遗憾</a>
+					这三项功能不需注册即可体验。
+				</p>
+			</div>
+		</div>
 	</fieldset>
 	<div class="form-actions">
 		<button type="submit" class="btn btn-primary">登录</button>
