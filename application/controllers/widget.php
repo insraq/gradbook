@@ -2,17 +2,17 @@
 
 class Widget extends CI_Controller {
 
-	private $user;
+	// private $user;
 
 	public function __construct()
 	{
 	    parent::__construct();
-	    $this->user = $this->login->require_login();
+	    // $this->user = $this->login->require_login();
 	}
 
 	public function lyrics()
 	{
-		$user = $this->user;
+		// $user = $this->user;
 
 		$im = imagecreatetruecolor(600, 300);
 		$bg = imagecolorallocate($im, 0, 153, 255);
@@ -36,27 +36,28 @@ class Widget extends CI_Controller {
 			$i++;
 		}
 		
-		imagettftext($im, 12, 0, 300, 280, $text, $font, $user->name . ' @ GRAD.CUHK.ME | 毕业纪念册');
+		imagettftext($im, 12, 0, 300, 280, $text, $font, 'GRAD.CUHK.ME | 毕业纪念册');
 		
-		imagepng($im, './upload/lyrics/' . $user->id . '.png');
+		$time = time();
+		imagepng($im, "./upload/lyrics/{$time}.png");
 		imagedestroy($im);
 
 		$this->load->view('header');
-		$this->load->view('widget/lyrics', array('user' => $user, 'lyrics' => $line));
+		$this->load->view('widget/lyrics', array('lyrics' => $line, 'file' => $time));
 		$this->load->view('footer');
 	}
 
 	public function one()
 	{
-		$user = $this->user;
+		// $user = $this->user;
 		$this->load->view('header');
-		$this->load->view('widget/one', array('user' => $user));
+		$this->load->view('widget/one');
 		$this->load->view('footer');
 	}
 
 	public function one_sentence()
 	{
-		$user = $this->user;
+		// $user = $this->user;
 
 		$im = imagecreatetruecolor(600, 300);
 		$bg = imagecolorallocate($im, 255, 144, 0);
@@ -77,9 +78,10 @@ class Widget extends CI_Controller {
 			imagettftext($im, $size, 0, 20, 50 + $i * $gap, $text, $font, mb_substr($sentence, $i * $length, $length));	
 		}
 
-		imagettftext($im, 12, 0, 120, 280, $text, $font, $user->name . ' @ GRAD.CUHK.ME | 毕业纪念册 - 一句话证明你读过中大');
-		
-		imagepng($im, "./upload/one_sentence/{$user->id}.png");
+		$time = time();
+
+		imagettftext($im, 12, 0, 120, 280, $text, $font, 'GRAD.CUHK.ME | 毕业纪念册 - 一句话证明你读过中大');
+		imagepng($im, "./upload/one_sentence/{$time}.png");
 		imagedestroy($im);
 
 		$s = R::dispense('sentence');
@@ -89,7 +91,7 @@ class Widget extends CI_Controller {
 		R::store($s);
 
 		$this->load->view('header');
-		$this->load->view('widget/one_sentence', array('user' => $user, 'one_sentence' => $sentence));
+		$this->load->view('widget/one_sentence', array('one_sentence' => $sentence, 'file' => $time));
 		$this->load->view('footer');
 	}
 
