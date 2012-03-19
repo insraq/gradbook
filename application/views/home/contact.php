@@ -8,6 +8,7 @@
 			<th>OCamp大组</th>
 			<th>OCamp小组</th>
 			<th>香港手机</th>
+			<th>上传头像</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -20,6 +21,7 @@
 			<td><?php echo $p->ocamp_big; ?></td>
 			<td><?php echo $p->ocamp_small; ?></td>
 			<td><?php echo $p->mobile; ?></td>
+			<td><?php echo empty($p->photo) ? '<b>否</b>' : '是'; ?></td>
 		</tr>
 	<?php endforeach; ?>
 	</tbody>
