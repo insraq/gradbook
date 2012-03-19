@@ -31,3 +31,8 @@
 	</li>
 	<?php endforeach; ?>
 </ul>
+<script type="text/javascript">
+	$('.public').each(function() {
+		$(this).html($(this).text().replace('膜拜', '膜拜 <img src="<?php echo base_url('asset/img/mb.gif') ?>" alt="" />'));
+	});
+</script>
