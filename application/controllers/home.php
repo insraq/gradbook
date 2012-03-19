@@ -128,12 +128,48 @@ class Home extends CI_Controller {
 		redirect('home/view/' . $user->id);
 	}
 
-	public function contact()
+	public function admin()
 	{
 		$user = $this->user;
 		$profile = R::find('profile', 'faculty IS NOT NULL ORDER BY ocamp_big ASC, ocamp_small ASC');
 		$this->load->view('header');
-		$this->load->view('home/contact', array('profile' => $profile));
+		$this->load->view('home/admin', array('profile' => $profile));
 		$this->load->view('footer');
+	}
+
+	public function order_gradbook($p)
+	{
+		$user = $this->user;
+		$profile = R::load('profile', $p);
+		if ($this->input->post('op') == 'true')
+		{
+			$profile->order_gradbook = 1;
+			$message = 'Added';
+		}
+		else
+		{
+			$profile->order_gradbook = 0;
+			$message = 'Canceled';
+		}
+		$id = R::store($profile);
+		echo json_encode(array('status' => 200, 'message' => $message));
+	}
+
+	public function order_party($p)
+	{
+		$user = $this->user;
+		$profile = R::load('profile', $p);
+		if ($this->input->post('op') == 'true')
+		{
+			$profile->order_party = 1;
+			$message = 'Added';
+		}
+		else
+		{
+			$profile->order_party = 0;
+			$message = 'Canceled';
+		}
+		$id = R::store($profile);
+		echo json_encode(array('status' => 200, 'message' => $message));
 	}
 }
