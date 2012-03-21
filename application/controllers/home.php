@@ -137,6 +137,17 @@ class Home extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function editor()
+	{
+		$user = $this->user;
+		$profile = R::find('profile', 'moment <> "" OR comment1 <> "" OR comment2 <> ""');
+		$sentence = R::find('sentence', 'user_id IS NOT NULL');
+		$regret = R::find('regret', 'user_id IS NOT NULL');
+		$this->load->view('header');
+		$this->load->view('home/editor', array('profile' => $profile, 'sentence' => $sentence, 'regret' => $regret));
+		$this->load->view('footer');
+	}
+
 	public function order_gradbook($p)
 	{
 		$user = $this->user;
