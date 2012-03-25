@@ -142,7 +142,7 @@ class Home extends CI_Controller {
 	public function validate()
 	{
 		$user = $this->user;
-		$validate = R::find('validate');
+		$validate = R::find('validation');
 		$this->load->view('header');
 		$this->load->view('home/validate', array('validate' => $validate));
 		$this->load->view('footer');

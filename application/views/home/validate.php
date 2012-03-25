@@ -9,7 +9,7 @@
 	<?php foreach ($validate as $v): ?>
 		<tr>
 			<td><?php echo $v->user->name; ?></td>
-			<td><?php echo site_url("user/activate/{$v->$user->id}/{$v->code}") ?></td>
+			<td><?php echo site_url("user/activate/{$v->user->id}/{$v->code}") ?></td>
 		</tr>
 	<?php endforeach; ?>
 	</tbody>
