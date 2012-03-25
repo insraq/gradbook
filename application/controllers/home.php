@@ -128,12 +128,23 @@ class Home extends CI_Controller {
 		redirect('home/view/' . $user->id);
 	}
 
+/* Only for Admin*/
+
 	public function admin()
 	{
 		$user = $this->user;
 		$profile = R::find('profile', 'faculty IS NOT NULL ORDER BY ocamp_big ASC, ocamp_small ASC');
 		$this->load->view('header');
 		$this->load->view('home/admin', array('profile' => $profile));
+		$this->load->view('footer');
+	}
+
+	public function validate()
+	{
+		$user = $this->user;
+		$validate = R::find('validate');
+		$this->load->view('header');
+		$this->load->view('home/validate', array('validate' => $validate));
 		$this->load->view('footer');
 	}
 
