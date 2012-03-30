@@ -69,7 +69,7 @@ class Statistics extends CI_Controller {
 			$new_k = "{$k} ({$v})";
 			$new_data[$new_k] = $v;
 		}
-		$url[] = $this->_get_chart($title_general . '「星座统计」', $data);
+		$url[] = $this->_get_chart($title_general . '「星座统计」', $new_data);
 
 		// 统计毕业去向
 		$aim = array('留港工作', '出国工作', '内地工作', '香港读书', '出国读书', '内地读书', '其他');
