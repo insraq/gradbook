@@ -50,6 +50,20 @@ class Statistics extends CI_Controller {
 		}
 		$url[] = $this->_get_chart($title_general . '「学院」', $data);
 
+		// 统计星座
+		$this->load->helper('astro');
+		$data = array();
+		$astro = R::find('profile', 'year IS NOT NULL AND month IS NOT NULL AND day IS NOT NULL');
+		foreach ($astro as $a)
+		{
+			$name = get_astro($a->month, $a->day);
+			if (isset($data[$name]))
+				$data[$name]++;
+			else
+				$data[$name] = 1;
+		}
+		$url[] = $this->_get_chart($title_general . '「星座统计」', $data);
+
 		// 统计毕业去向
 		$aim = array('留港工作', '出国工作', '内地工作', '香港读书', '出国读书', '内地读书', '其他');
 		$data = array();
