@@ -66,7 +66,7 @@ class Statistics extends CI_Controller {
 		$new_data = array();
 		foreach ($data as $k => $v)
 		{
-			$new_k = "{$k} ({$kv})";
+			$new_k = "{$k} ({$v})";
 			$new_data[$new_k] = $v;
 		}
 		$url[] = $this->_get_chart($title_general . '「星座统计」', $data);
