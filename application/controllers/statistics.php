@@ -63,6 +63,10 @@ class Statistics extends CI_Controller {
 			else
 				$data[$name] = 1;
 		}
+		foreach ($data as &$k => $v)
+		{
+			$k = "{$k} ({$v})";
+		}
 		$url[] = $this->_get_chart($title_general . '「星座统计」', $data);
 
 		// 统计毕业去向
