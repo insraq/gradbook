@@ -57,6 +57,7 @@ class Statistics extends CI_Controller {
 		foreach ($astro as $a)
 		{
 			$name = get_astro($a->month, $a->day);
+			$name = $name['name'];
 			if (isset($data[$name]))
 				$data[$name]++;
 			else
