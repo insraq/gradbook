@@ -107,7 +107,8 @@ class Statistics extends CI_Controller {
 		{
 			$v = count(R::find('profile', 'province = ?', array($r)));
 			$k = "{$r} ({$v})";
-			$data[$k] = $v;
+			if ($v != 0)
+				$data[$k] = $v;
 		}
 		$url[] = $this->_get_chart($title_general . '「省市」', $data);
 
