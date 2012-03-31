@@ -159,6 +159,21 @@ class Home extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function csv()
+	{
+		$user = $this->user;
+		$profile = R::find('profile', 'faculty IS NOT NULL');
+		$this->load->helper('astro');
+		header('Content-type: text/csv');
+		header('Content-disposition: attachment;filename=grad.csv');
+		echo "\xEF\xBB\xBF";
+		foreach ($profile as $p)
+		{
+			$astro = get_astro($p->month, $p->day);
+			echo "{$p->user->name},{$p->province}｜{$p->college}｜{$p->faculty}｜{$p->department},{$p->ocamp_big}｜{$p->ocamp_small}｜{$astro['name']}｜{$p->aim},{$p->user->name}：手机 {$p->mobile}｜电邮 {$p->email}｜QQ {$p->qq}｜MSN {$p->msn}\n";
+		}
+	}
+
 	public function order_gradbook($p)
 	{
 		$user = $this->user;
