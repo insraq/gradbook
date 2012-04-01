@@ -170,7 +170,7 @@ class Home extends CI_Controller {
 		foreach ($profile as $p)
 		{
 			$astro = get_astro($p->month, $p->day);
-			echo "{$p->user->name},{$p->province}｜{$p->college}｜{$p->faculty}｜{$p->department},{$p->ocamp_big}｜{$p->ocamp_small}｜{$astro['name']}｜{$p->aim},{$p->user->name}：手机 {$p->mobile}｜电邮 {$p->email}｜QQ {$p->qq}｜MSN {$p->msn}\n";
+			echo "{$p->user->name},{$p->province}｜{$p->college}｜{$p->faculty}｜{$p->department},{$p->ocamp_big}｜{$p->ocamp_small}｜{$astro['name']}｜{$p->aim},{$p->user->name}：手机 {$p->mobile}｜电邮 {$p->user->email}｜QQ {$p->qq}｜MSN {$p->msn}\n";
 		}
 	}
 
