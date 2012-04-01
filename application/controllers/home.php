@@ -175,6 +175,16 @@ class Home extends CI_Controller {
 		}
 	}
 
+	public function pack()
+	{
+		$profile = R::find('profile', 'faculty IS NOT NULL');
+		foreach ($profile as $p)
+		{
+			rename('.upload/' . $p->photo, '.upload/pack/' . $profile->user->name . '.jpg');
+		}
+		echo "Finished!";
+	}
+
 	public function order_gradbook($p)
 	{
 		$user = $this->user;
