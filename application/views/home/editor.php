@@ -55,7 +55,7 @@
 	<thead>
 		<tr>
 			<th>姓名</th>
-			<th>后悔</th>
+			<th>头像</th>
 		</tr>
 	</thead>
 	<tbody>

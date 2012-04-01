@@ -180,7 +180,7 @@ class Home extends CI_Controller {
 		$profile = R::find('profile', 'faculty IS NOT NULL');
 		foreach ($profile as $p)
 		{
-			rename('.upload/' . $p->photo, '.upload/pack/' . $p->user->name . '.jpg');
+			rename('./upload/' . $p->photo, './upload/pack/' . $p->user->name . '.jpg');
 		}
 		echo "Finished!";
 	}
