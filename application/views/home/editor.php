@@ -50,3 +50,20 @@
 	<?php endforeach; ?>
 	</tbody>
 </table>
+
+<table class="table table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>姓名</th>
+			<th>后悔</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php foreach ($user as $u): ?>
+		<tr>
+			<td><?php echo $u->name; ?></td>
+			<td><?php echo anchor("upload/" . R::findOne('profile', 'user_id = ?', array($u->id))->photo, '下载图片'); ?></td>
+		</tr>
+	<?php endforeach; ?>
+	</tbody>
+</table>

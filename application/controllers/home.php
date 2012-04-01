@@ -154,8 +154,9 @@ class Home extends CI_Controller {
 		$profile = R::find('profile', 'moment <> "" OR comment1 <> "" OR comment2 <> ""');
 		$sentence = R::find('sentence', 'user_id IS NOT NULL');
 		$regret = R::find('regret', 'user_id IS NOT NULL');
+		$user = R::find('user', 'validate = 1 ORDER BY CONVERT(name USING gbk)');
 		$this->load->view('header');
-		$this->load->view('home/editor', array('profile' => $profile, 'sentence' => $sentence, 'regret' => $regret));
+		$this->load->view('home/editor', array('profile' => $profile, 'sentence' => $sentence, 'regret' => $regret, 'user' => $user));
 		$this->load->view('footer');
 	}
 
