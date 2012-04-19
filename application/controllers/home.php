@@ -175,6 +175,18 @@ class Home extends CI_Controller {
 		}
 	}
 
+	public function listCSV()
+	{
+		$profile = R::find('profile', 'faculty IS NOT NULL');
+		header('Content-type: text/csv');
+		header('Content-disposition: attachment;filename=grad.csv');
+		echo "\xEF\xBB\xBF";
+		foreach ($profile as $p)
+		{
+			echo "{$p->user->id}, {$p->user->name} \n";
+		}
+	}
+
 	public function pack()
 	{
 		$profile = R::find('profile', 'faculty IS NOT NULL');
